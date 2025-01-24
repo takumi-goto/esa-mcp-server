@@ -35,6 +35,7 @@ const server = new Server(
   }
 )
 
+const orderSchema = z.union([z.literal("asc"), z.literal("desc")]).default("desc")
 const sortSchema = z
   .union([
     z.literal("created"),
@@ -49,7 +50,7 @@ const sortSchema = z
 const searchPostsSchema = z.object({
   teamName: z.string().default(env.DEFAULT_ESA_TEAM),
   query: z.string(),
-  order: z.union([z.literal("asc"), z.literal("desc")]).default("desc"),
+  order: orderSchema,
   sort: sortSchema,
   page: z.number().min(1).default(1),
   perPage: z.number().min(1).max(100).default(50),
@@ -115,11 +116,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   }
 })
 
-const PER_PAGE_ON_ONE_REQUEST = 20
 const fetchPosts = async (
   teamName: string,
   query: string,
-  order: "asc" | "desc",
+  order: z.infer<typeof orderSchema>,
   sort: z.infer<typeof sortSchema>,
   page: number,
   perPage: number,
