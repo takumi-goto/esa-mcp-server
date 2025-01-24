@@ -124,37 +124,39 @@ const fetchPostsRecursively = async (
   currentPage: number,
   endPage: number,
 ): Promise<Omit<Post, "body_html" | "body_md">[]> => {
-  const response = await getV1TeamsTeamNamePosts(
-    teamName,
-    {
-      q: query,
-      order: order,
-      sort: sort,
-      page: currentPage,
-      per_page: PER_PAGE_ON_ONE_REQUEST,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${env.ESA_API_KEY}`,
+  const [response, nextPosts] = await Promise.all([
+    getV1TeamsTeamNamePosts(
+      teamName,
+      {
+        q: query,
+        order: order,
+        sort: sort,
+        page: currentPage,
+        per_page: PER_PAGE_ON_ONE_REQUEST,
       },
-    }
-  )
+      {
+        headers: {
+          Authorization: `Bearer ${env.ESA_API_KEY}`,
+        },
+      }
+    ),
+    (async () => {
+      const nextPage = currentPage + 1
+
+      if (nextPage === endPage) {
+        return []
+      } else {
+        return await fetchPostsRecursively(teamName, query, order, sort, nextPage, endPage)
+      }
+    })()
+  ])
 
   // esa 的には取ってきちゃうが、LLM が呼むのに全文は大きすぎるので外す
   const posts = (response.data.posts ?? []).map(
     ({ body_html, body_md, ...others }) => others
   )
 
-  const nextPage = currentPage + 1
-
-  if (nextPage === endPage) {
-    return posts
-  } else {
-    return [
-      ...posts,
-      ...(await fetchPostsRecursively(teamName, query, order, sort, nextPage, endPage)),
-    ]
-  }
+  return [...posts, ...nextPosts]
 }
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
