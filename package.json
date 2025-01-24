@@ -1,0 +1,46 @@
+{
+  "name": "@d-kimuson/esa-mcp-server",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "esa-mcp-server": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "pnpm /^dev:.*/",
+    "dev:tsc": "tsc --watch",
+    "dev:openapi": "orval -w",
+    "dev:docs": "redocly preview-docs",
+    "lint": "redocly lint",
+    "typecheck": "tsc -p . --noEmit",
+    "build": "pnpm build:orval && pnpm build:esbuild",
+    "build:esbuild": "esbuild ./src/index.ts --format=esm --platform=node --bundle --packages=external --outdir=dist",
+    "build:orval": "orval",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.7.9",
+    "zod": "^3.24.1",
+    "zod-to-json-schema": "^3.24.1"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^1.26.1",
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.24.2",
+    "msw": "^2.7.0",
+    "orval": "^7.3.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321"
+}
