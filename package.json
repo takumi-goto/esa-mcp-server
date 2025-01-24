@@ -1,5 +1,6 @@
 {
   "name": "@d-kimuson/esa-mcp-server",
+  "description": "esa の Model Context Protocol サーバー実装",
   "version": "0.0.0",
   "type": "module",
   "files": [
