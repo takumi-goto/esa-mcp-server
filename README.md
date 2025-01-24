@@ -19,7 +19,7 @@ esa-mcp-server は、[esa.io](https://esa.io) の API を [Model Context Protoco
       "command": "npx",
       "args": [
         "-y",
-        "@d-kimuson/esa-mcp-server"
+        "esa-mcp-server@latest"
       ]
     },
     "env": {
