@@ -23,7 +23,7 @@
     "lint": "redocly lint",
     "typecheck": "tsc -p . --noEmit",
     "build": "pnpm build:orval && pnpm build:esbuild",
-    "build:esbuild": "esbuild ./src/index.ts --format=esm --platform=node --bundle --packages=external --outdir=dist",
+    "build:esbuild": "esbuild ./src/index.ts --format=esm --platform=node --bundle --outdir=dist",
     "build:orval": "orval",
     "test": "vitest run"
   },
