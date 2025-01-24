@@ -1,5 +1,5 @@
 {
-  "name": "@d-kimuson/esa-mcp-server",
+  "name": "esa-mcp-server",
   "description": "esa の Model Context Protocol サーバー実装",
   "version": "0.0.0",
   "type": "module",
@@ -40,8 +40,19 @@
     "esbuild": "^0.24.2",
     "msw": "^2.7.0",
     "orval": "^7.3.0",
+    "release-it": "^18.1.2",
+    "release-it-pnpm": "^4.6.4",
     "typescript": "^5.3.3",
     "vitest": "^1.2.0"
   },
-  "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321"
+  "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d-kimuson/esa-mcp-server"
+  },
+  "homepage": "https://github.com/d-kimuson/esa-mcp-server"
 }
