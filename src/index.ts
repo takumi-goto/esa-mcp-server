@@ -70,7 +70,35 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: [
       {
         name: "search_esa_posts",
-        description: "Search posts in esa.io. Response is paginated.",
+        description:
+          "Search posts in esa.io. Response is paginated. " +
+          "For efficient search, you can use customized queries like the following: " +
+          "keyword for partial match, \"keyword\" for exact match, " +
+          "keyword1 keyword2 for AND match, " +
+          "keyword1 OR keyword2 for OR match, " +
+          "-keyword for excluding keywords, " +
+          "title:keyword for title match, " +
+          "wip:true or wip:false for WIP posts, " +
+          "kind:stock or kind:flow for kind match, " +
+          "category:category_name for partial match with category name, " +
+          "in:category_name for prefix match with category name, " +
+          "on:category_name for exact match with category name, " +
+          "body:keyword for body match, " +
+          "tag:tag_name or tag:tag_name case_sensitive:true for tag match, " +
+          "user:screen_name for post author's screen name, " +
+          "updated_by:screen_name for post updater's screen name, " +
+          "comment:keyword for partial match with comments, " +
+          "starred:true or starred:false for starred posts, " +
+          "watched:true or watched:false for watched posts, " +
+          "watched_by:screen_name for screen name of members watching the post, " +
+          "sharing:true or sharing:false for shared posts, " +
+          "stars:>3 for posts with more than 3 stars, " +
+          "watches:>3 for posts with more than 3 watches, " +
+          "comments:>3 for posts with more than 3 comments, " +
+          "done:>=3 for posts with 3 or more done items, " +
+          "undone:>=3 for posts with 3 or more undone items, " +
+          "created:>YYYY-MM-DD for filtering by creation date, " +
+          "updated:>YYYY-MM-DD for filtering by update date",
         inputSchema: zodToJsonSchema(searchPostsSchema),
       },
       {
