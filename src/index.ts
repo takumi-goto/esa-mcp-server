@@ -51,8 +51,8 @@ const searchPostsSchema = z.object({
   query: z.string(),
   order: z.union([z.literal("asc"), z.literal("desc")]).default("desc"),
   sort: sortSchema,
-  page: z.number().default(1),
-  perPage: z.number().default(60),
+  page: z.number().min(1).default(1),
+  perPage: z.number().min(1).max(100).default(50),
 })
 
 const readEsaPostSchema = z.object({
@@ -116,47 +116,36 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 })
 
 const PER_PAGE_ON_ONE_REQUEST = 20
-const fetchPostsRecursively = async (
+const fetchPosts = async (
   teamName: string,
   query: string,
   order: "asc" | "desc",
   sort: z.infer<typeof sortSchema>,
-  currentPage: number,
-  endPage: number,
+  page: number,
+  perPage: number,
 ): Promise<Omit<Post, "body_html" | "body_md">[]> => {
-  const [response, nextPosts] = await Promise.all([
-    getV1TeamsTeamNamePosts(
-      teamName,
-      {
-        q: query,
-        order: order,
-        sort: sort,
-        page: currentPage,
-        per_page: PER_PAGE_ON_ONE_REQUEST,
+  const response = await getV1TeamsTeamNamePosts(
+    teamName,
+    {
+      q: query,
+      order: order,
+      sort: sort,
+      page: page,
+      per_page: perPage,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${env.ESA_API_KEY}`,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${env.ESA_API_KEY}`,
-        },
-      }
-    ),
-    (async () => {
-      const nextPage = currentPage + 1
-
-      if (nextPage === endPage) {
-        return []
-      } else {
-        return await fetchPostsRecursively(teamName, query, order, sort, nextPage, endPage)
-      }
-    })()
-  ])
+    }
+  )
 
   // esa 的には取ってきちゃうが、LLM が呼むのに全文は大きすぎるので外す
   const posts = (response.data.posts ?? []).map(
     ({ body_html, body_md, ...others }) => others
   )
 
-  return [...posts, ...nextPosts]
+  return posts
 }
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
@@ -170,18 +159,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           throw new Error(`Invalid arguments for search_posts: ${parsed.error}`)
         }
 
-        const startPage =
-          (parsed.data.page - 1) * (parsed.data.perPage / PER_PAGE_ON_ONE_REQUEST) + 1
-        const endPage = parsed.data.page * (parsed.data.perPage / PER_PAGE_ON_ONE_REQUEST)
-        const nextPage = endPage + 1
-
-        const posts = await fetchPostsRecursively(
+        const posts = await fetchPosts(
           parsed.data.teamName,
           parsed.data.query,
           parsed.data.order,
           parsed.data.sort,
-          startPage,
-          endPage
+          parsed.data.page,
+          parsed.data.perPage
         )
 
         return {
@@ -190,7 +174,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               type: "text",
               text: JSON.stringify({
                 posts: posts,
-                nextPage: nextPage,
+                nextPage: parsed.data.page + 1,
               }),
             },
           ],
