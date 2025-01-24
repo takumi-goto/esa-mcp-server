@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.6
+
+*No significant changes*
+
+##### &nbsp;&nbsp;&nbsp;&nbsp;[View changes on GitHub](https://github.com/d-kimuson/esa-mcp-server/compare/v0.0.5...0.0.6)
+
 ## 0.0.5
 
 *No significant changes*
