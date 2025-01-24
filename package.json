@@ -3,6 +3,7 @@
   "description": "esa の Model Context Protocol サーバー実装",
   "version": "0.0.5",
   "type": "module",
+  "license": "MIT",
   "files": [
     "dist"
   ],
