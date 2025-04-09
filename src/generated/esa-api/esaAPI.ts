@@ -47,8 +47,9 @@ import type {
   PostV1TeamsTeamNamePostsBody,
   PostV1TeamsTeamNamePostsPostNumberCommentsBody,
   PostV1TeamsTeamNamePostsPostNumberStarBody,
-  Team,
-} from "./esaAPI.schemas"
+  Team
+} from './esaAPI.schemas';
+
 
 /**
  * @summary Issue new access token
@@ -57,37 +58,40 @@ export type postOauthTokenResponse200 = {
   data: PostOauthToken200
   status: 200
 }
-
-export type postOauthTokenResponseComposite = postOauthTokenResponse200
-
+    
+export type postOauthTokenResponseComposite = postOauthTokenResponse200;
+    
 export type postOauthTokenResponse = postOauthTokenResponseComposite & {
-  headers: Headers
+  headers: Headers;
 }
 
 export const getPostOauthTokenUrl = () => {
+
+
+  
+
   return `https://api.esa.io/oauth/token`
 }
 
-export const postOauthToken = async (
-  postOauthTokenBody: PostOauthTokenBody,
-  options?: RequestInit
-): Promise<postOauthTokenResponse> => {
-  const res = await fetch(getPostOauthTokenUrl(), {
+export const postOauthToken = async (postOauthTokenBody: PostOauthTokenBody, options?: RequestInit): Promise<postOauthTokenResponse> => {
+  
+  const res = await fetch(getPostOauthTokenUrl(),
+  {      
     ...options,
-    method: "POST",
-    headers: { "Content-Type": "application/json", ...options?.headers },
-    body: JSON.stringify(postOauthTokenBody),
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      postOauthTokenBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postOauthTokenResponse["data"] = body ? JSON.parse(body) : {}
+  const data: postOauthTokenResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postOauthTokenResponse
+  return { data, status: res.status, headers: res.headers } as postOauthTokenResponse
 }
+
+
 
 /**
  * @summary Get access token information
@@ -96,34 +100,39 @@ export type getOauthTokenInfoResponse200 = {
   data: GetOauthTokenInfo200
   status: 200
 }
-
-export type getOauthTokenInfoResponseComposite = getOauthTokenInfoResponse200
-
+    
+export type getOauthTokenInfoResponseComposite = getOauthTokenInfoResponse200;
+    
 export type getOauthTokenInfoResponse = getOauthTokenInfoResponseComposite & {
-  headers: Headers
+  headers: Headers;
 }
 
 export const getGetOauthTokenInfoUrl = () => {
+
+
+  
+
   return `https://api.esa.io/oauth/token/info`
 }
 
-export const getOauthTokenInfo = async (
-  options?: RequestInit
-): Promise<getOauthTokenInfoResponse> => {
-  const res = await fetch(getGetOauthTokenInfoUrl(), {
+export const getOauthTokenInfo = async ( options?: RequestInit): Promise<getOauthTokenInfoResponse> => {
+  
+  const res = await fetch(getGetOauthTokenInfoUrl(),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getOauthTokenInfoResponse["data"] = body ? JSON.parse(body) : {}
+  const data: getOauthTokenInfoResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getOauthTokenInfoResponse
+  return { data, status: res.status, headers: res.headers } as getOauthTokenInfoResponse
 }
+
+
 
 /**
  * @summary Revoke access token
@@ -132,37 +141,40 @@ export type postOauthRevokeResponse200 = {
   data: PostOauthRevoke200
   status: 200
 }
-
-export type postOauthRevokeResponseComposite = postOauthRevokeResponse200
-
+    
+export type postOauthRevokeResponseComposite = postOauthRevokeResponse200;
+    
 export type postOauthRevokeResponse = postOauthRevokeResponseComposite & {
-  headers: Headers
+  headers: Headers;
 }
 
 export const getPostOauthRevokeUrl = () => {
+
+
+  
+
   return `https://api.esa.io/oauth/revoke`
 }
 
-export const postOauthRevoke = async (
-  postOauthRevokeBody: PostOauthRevokeBody,
-  options?: RequestInit
-): Promise<postOauthRevokeResponse> => {
-  const res = await fetch(getPostOauthRevokeUrl(), {
+export const postOauthRevoke = async (postOauthRevokeBody: PostOauthRevokeBody, options?: RequestInit): Promise<postOauthRevokeResponse> => {
+  
+  const res = await fetch(getPostOauthRevokeUrl(),
+  {      
     ...options,
-    method: "POST",
-    headers: { "Content-Type": "application/json", ...options?.headers },
-    body: JSON.stringify(postOauthRevokeBody),
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      postOauthRevokeBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postOauthRevokeResponse["data"] = body ? JSON.parse(body) : {}
+  const data: postOauthRevokeResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postOauthRevokeResponse
+  return { data, status: res.status, headers: res.headers } as postOauthRevokeResponse
 }
+
+
 
 /**
  * @summary List teams
@@ -171,47 +183,46 @@ export type getV1TeamsResponse200 = {
   data: GetV1Teams200
   status: 200
 }
-
-export type getV1TeamsResponseComposite = getV1TeamsResponse200
-
+    
+export type getV1TeamsResponseComposite = getV1TeamsResponse200;
+    
 export type getV1TeamsResponse = getV1TeamsResponseComposite & {
-  headers: Headers
+  headers: Headers;
 }
 
-export const getGetV1TeamsUrl = (params?: GetV1TeamsParams) => {
-  const normalizedParams = new URLSearchParams()
+export const getGetV1TeamsUrl = (params?: GetV1TeamsParams,) => {
+  const normalizedParams = new URLSearchParams();
 
   Object.entries(params || {}).forEach(([key, value]) => {
+    
     if (value !== undefined) {
-      normalizedParams.append(key, value === null ? "null" : value.toString())
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
     }
-  })
+  });
 
-  const stringifiedParams = normalizedParams.toString()
+  const stringifiedParams = normalizedParams.toString();
 
-  return stringifiedParams.length > 0
-    ? `https://api.esa.io/v1/teams?${stringifiedParams}`
-    : `https://api.esa.io/v1/teams`
+  return stringifiedParams.length > 0 ? `https://api.esa.io/v1/teams?${stringifiedParams}` : `https://api.esa.io/v1/teams`
 }
 
-export const getV1Teams = async (
-  params?: GetV1TeamsParams,
-  options?: RequestInit
-): Promise<getV1TeamsResponse> => {
-  const res = await fetch(getGetV1TeamsUrl(params), {
+export const getV1Teams = async (params?: GetV1TeamsParams, options?: RequestInit): Promise<getV1TeamsResponse> => {
+  
+  const res = await fetch(getGetV1TeamsUrl(params),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsResponse["data"] = body ? JSON.parse(body) : {}
+  const data: getV1TeamsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsResponse
 }
+
+
 
 /**
  * @summary Get a team
@@ -220,35 +231,39 @@ export type getV1TeamsTeamNameResponse200 = {
   data: Team
   status: 200
 }
-
-export type getV1TeamsTeamNameResponseComposite = getV1TeamsTeamNameResponse200
-
+    
+export type getV1TeamsTeamNameResponseComposite = getV1TeamsTeamNameResponse200;
+    
 export type getV1TeamsTeamNameResponse = getV1TeamsTeamNameResponseComposite & {
-  headers: Headers
+  headers: Headers;
 }
 
-export const getGetV1TeamsTeamNameUrl = (teamName: string) => {
+export const getGetV1TeamsTeamNameUrl = (teamName: string,) => {
+
+
+  
+
   return `https://api.esa.io/v1/teams/${teamName}`
 }
 
-export const getV1TeamsTeamName = async (
-  teamName: string,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameResponse> => {
-  const res = await fetch(getGetV1TeamsTeamNameUrl(teamName), {
+export const getV1TeamsTeamName = async (teamName: string, options?: RequestInit): Promise<getV1TeamsTeamNameResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameUrl(teamName),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameResponse["data"] = body ? JSON.parse(body) : {}
+  const data: getV1TeamsTeamNameResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameResponse
 }
+
+
 
 /**
  * @summary Get team statistics
@@ -257,39 +272,39 @@ export type getV1TeamsTeamNameStatsResponse200 = {
   data: GetV1TeamsTeamNameStats200
   status: 200
 }
+    
+export type getV1TeamsTeamNameStatsResponseComposite = getV1TeamsTeamNameStatsResponse200;
+    
+export type getV1TeamsTeamNameStatsResponse = getV1TeamsTeamNameStatsResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNameStatsResponseComposite =
-  getV1TeamsTeamNameStatsResponse200
+export const getGetV1TeamsTeamNameStatsUrl = (teamName: string,) => {
 
-export type getV1TeamsTeamNameStatsResponse =
-  getV1TeamsTeamNameStatsResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNameStatsUrl = (teamName: string) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/stats`
 }
 
-export const getV1TeamsTeamNameStats = async (
-  teamName: string,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameStatsResponse> => {
-  const res = await fetch(getGetV1TeamsTeamNameStatsUrl(teamName), {
+export const getV1TeamsTeamNameStats = async (teamName: string, options?: RequestInit): Promise<getV1TeamsTeamNameStatsResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameStatsUrl(teamName),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameStatsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNameStatsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameStatsResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameStatsResponse
 }
+
+
 
 /**
  * @summary List posts
@@ -298,55 +313,48 @@ export type getV1TeamsTeamNamePostsResponse200 = {
   data: GetV1TeamsTeamNamePosts200
   status: 200
 }
+    
+export type getV1TeamsTeamNamePostsResponseComposite = getV1TeamsTeamNamePostsResponse200;
+    
+export type getV1TeamsTeamNamePostsResponse = getV1TeamsTeamNamePostsResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNamePostsResponseComposite =
-  getV1TeamsTeamNamePostsResponse200
-
-export type getV1TeamsTeamNamePostsResponse =
-  getV1TeamsTeamNamePostsResponseComposite & {
-    headers: Headers
-  }
-
-export const getGetV1TeamsTeamNamePostsUrl = (
-  teamName: string,
-  params?: GetV1TeamsTeamNamePostsParams
-) => {
-  const normalizedParams = new URLSearchParams()
+export const getGetV1TeamsTeamNamePostsUrl = (teamName: string,
+    params?: GetV1TeamsTeamNamePostsParams,) => {
+  const normalizedParams = new URLSearchParams();
 
   Object.entries(params || {}).forEach(([key, value]) => {
+    
     if (value !== undefined) {
-      normalizedParams.append(key, value === null ? "null" : value.toString())
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
     }
-  })
+  });
 
-  const stringifiedParams = normalizedParams.toString()
+  const stringifiedParams = normalizedParams.toString();
 
-  return stringifiedParams.length > 0
-    ? `https://api.esa.io/v1/teams/${teamName}/posts?${stringifiedParams}`
-    : `https://api.esa.io/v1/teams/${teamName}/posts`
+  return stringifiedParams.length > 0 ? `https://api.esa.io/v1/teams/${teamName}/posts?${stringifiedParams}` : `https://api.esa.io/v1/teams/${teamName}/posts`
 }
 
-export const getV1TeamsTeamNamePosts = async (
-  teamName: string,
-  params?: GetV1TeamsTeamNamePostsParams,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNamePostsResponse> => {
-  const res = await fetch(getGetV1TeamsTeamNamePostsUrl(teamName, params), {
+export const getV1TeamsTeamNamePosts = async (teamName: string,
+    params?: GetV1TeamsTeamNamePostsParams, options?: RequestInit): Promise<getV1TeamsTeamNamePostsResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNamePostsUrl(teamName,params),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNamePostsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNamePostsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNamePostsResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNamePostsResponse
 }
+
+
 
 /**
  * @summary Create a post
@@ -355,42 +363,41 @@ export type postV1TeamsTeamNamePostsResponse201 = {
   data: Post
   status: 201
 }
+    
+export type postV1TeamsTeamNamePostsResponseComposite = postV1TeamsTeamNamePostsResponse201;
+    
+export type postV1TeamsTeamNamePostsResponse = postV1TeamsTeamNamePostsResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNamePostsResponseComposite =
-  postV1TeamsTeamNamePostsResponse201
+export const getPostV1TeamsTeamNamePostsUrl = (teamName: string,) => {
 
-export type postV1TeamsTeamNamePostsResponse =
-  postV1TeamsTeamNamePostsResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNamePostsUrl = (teamName: string) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts`
 }
 
-export const postV1TeamsTeamNamePosts = async (
-  teamName: string,
-  postV1TeamsTeamNamePostsBody: PostV1TeamsTeamNamePostsBody,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNamePostsResponse> => {
-  const res = await fetch(getPostV1TeamsTeamNamePostsUrl(teamName), {
+export const postV1TeamsTeamNamePosts = async (teamName: string,
+    postV1TeamsTeamNamePostsBody: PostV1TeamsTeamNamePostsBody, options?: RequestInit): Promise<postV1TeamsTeamNamePostsResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNamePostsUrl(teamName),
+  {      
     ...options,
-    method: "POST",
-    headers: { "Content-Type": "application/json", ...options?.headers },
-    body: JSON.stringify(postV1TeamsTeamNamePostsBody),
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      postV1TeamsTeamNamePostsBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNamePostsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNamePostsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNamePostsResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNamePostsResponse
 }
+
+
 
 /**
  * @summary Get a post
@@ -399,60 +406,50 @@ export type getV1TeamsTeamNamePostsPostNumberResponse200 = {
   data: Post
   status: 200
 }
+    
+export type getV1TeamsTeamNamePostsPostNumberResponseComposite = getV1TeamsTeamNamePostsPostNumberResponse200;
+    
+export type getV1TeamsTeamNamePostsPostNumberResponse = getV1TeamsTeamNamePostsPostNumberResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNamePostsPostNumberResponseComposite =
-  getV1TeamsTeamNamePostsPostNumberResponse200
-
-export type getV1TeamsTeamNamePostsPostNumberResponse =
-  getV1TeamsTeamNamePostsPostNumberResponseComposite & {
-    headers: Headers
-  }
-
-export const getGetV1TeamsTeamNamePostsPostNumberUrl = (
-  teamName: string,
-  postNumber: number,
-  params?: GetV1TeamsTeamNamePostsPostNumberParams
-) => {
-  const normalizedParams = new URLSearchParams()
+export const getGetV1TeamsTeamNamePostsPostNumberUrl = (teamName: string,
+    postNumber: number,
+    params?: GetV1TeamsTeamNamePostsPostNumberParams,) => {
+  const normalizedParams = new URLSearchParams();
 
   Object.entries(params || {}).forEach(([key, value]) => {
+    
     if (value !== undefined) {
-      normalizedParams.append(key, value === null ? "null" : value.toString())
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
     }
-  })
+  });
 
-  const stringifiedParams = normalizedParams.toString()
+  const stringifiedParams = normalizedParams.toString();
 
-  return stringifiedParams.length > 0
-    ? `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}?${stringifiedParams}`
-    : `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}`
+  return stringifiedParams.length > 0 ? `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}?${stringifiedParams}` : `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}`
 }
 
-export const getV1TeamsTeamNamePostsPostNumber = async (
-  teamName: string,
-  postNumber: number,
-  params?: GetV1TeamsTeamNamePostsPostNumberParams,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNamePostsPostNumberResponse> => {
-  const res = await fetch(
-    getGetV1TeamsTeamNamePostsPostNumberUrl(teamName, postNumber, params),
-    {
-      ...options,
-      method: "GET",
-    }
-  )
+export const getV1TeamsTeamNamePostsPostNumber = async (teamName: string,
+    postNumber: number,
+    params?: GetV1TeamsTeamNamePostsPostNumberParams, options?: RequestInit): Promise<getV1TeamsTeamNamePostsPostNumberResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNamePostsPostNumberUrl(teamName,postNumber,params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNamePostsPostNumberResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNamePostsPostNumberResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNamePostsPostNumberResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNamePostsPostNumberResponse
 }
+
+
 
 /**
  * @summary Update a post
@@ -461,49 +458,43 @@ export type patchV1TeamsTeamNamePostsPostNumberResponse200 = {
   data: PatchV1TeamsTeamNamePostsPostNumber200
   status: 200
 }
+    
+export type patchV1TeamsTeamNamePostsPostNumberResponseComposite = patchV1TeamsTeamNamePostsPostNumberResponse200;
+    
+export type patchV1TeamsTeamNamePostsPostNumberResponse = patchV1TeamsTeamNamePostsPostNumberResponseComposite & {
+  headers: Headers;
+}
 
-export type patchV1TeamsTeamNamePostsPostNumberResponseComposite =
-  patchV1TeamsTeamNamePostsPostNumberResponse200
+export const getPatchV1TeamsTeamNamePostsPostNumberUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type patchV1TeamsTeamNamePostsPostNumberResponse =
-  patchV1TeamsTeamNamePostsPostNumberResponseComposite & {
-    headers: Headers
-  }
 
-export const getPatchV1TeamsTeamNamePostsPostNumberUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}`
 }
 
-export const patchV1TeamsTeamNamePostsPostNumber = async (
-  teamName: string,
-  postNumber: number,
-  patchV1TeamsTeamNamePostsPostNumberBody: PatchV1TeamsTeamNamePostsPostNumberBody,
-  options?: RequestInit
-): Promise<patchV1TeamsTeamNamePostsPostNumberResponse> => {
-  const res = await fetch(
-    getPatchV1TeamsTeamNamePostsPostNumberUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "PATCH",
-      headers: { "Content-Type": "application/json", ...options?.headers },
-      body: JSON.stringify(patchV1TeamsTeamNamePostsPostNumberBody),
-    }
-  )
+export const patchV1TeamsTeamNamePostsPostNumber = async (teamName: string,
+    postNumber: number,
+    patchV1TeamsTeamNamePostsPostNumberBody: PatchV1TeamsTeamNamePostsPostNumberBody, options?: RequestInit): Promise<patchV1TeamsTeamNamePostsPostNumberResponse> => {
+  
+  const res = await fetch(getPatchV1TeamsTeamNamePostsPostNumberUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      patchV1TeamsTeamNamePostsPostNumberBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: patchV1TeamsTeamNamePostsPostNumberResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: patchV1TeamsTeamNamePostsPostNumberResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as patchV1TeamsTeamNamePostsPostNumberResponse
+  return { data, status: res.status, headers: res.headers } as patchV1TeamsTeamNamePostsPostNumberResponse
 }
+
+
 
 /**
  * @summary Delete a post
@@ -512,46 +503,41 @@ export type deleteV1TeamsTeamNamePostsPostNumberResponse204 = {
   data: void
   status: 204
 }
+    
+export type deleteV1TeamsTeamNamePostsPostNumberResponseComposite = deleteV1TeamsTeamNamePostsPostNumberResponse204;
+    
+export type deleteV1TeamsTeamNamePostsPostNumberResponse = deleteV1TeamsTeamNamePostsPostNumberResponseComposite & {
+  headers: Headers;
+}
 
-export type deleteV1TeamsTeamNamePostsPostNumberResponseComposite =
-  deleteV1TeamsTeamNamePostsPostNumberResponse204
+export const getDeleteV1TeamsTeamNamePostsPostNumberUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type deleteV1TeamsTeamNamePostsPostNumberResponse =
-  deleteV1TeamsTeamNamePostsPostNumberResponseComposite & {
-    headers: Headers
-  }
 
-export const getDeleteV1TeamsTeamNamePostsPostNumberUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}`
 }
 
-export const deleteV1TeamsTeamNamePostsPostNumber = async (
-  teamName: string,
-  postNumber: number,
-  options?: RequestInit
-): Promise<deleteV1TeamsTeamNamePostsPostNumberResponse> => {
-  const res = await fetch(
-    getDeleteV1TeamsTeamNamePostsPostNumberUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "DELETE",
-    }
-  )
+export const deleteV1TeamsTeamNamePostsPostNumber = async (teamName: string,
+    postNumber: number, options?: RequestInit): Promise<deleteV1TeamsTeamNamePostsPostNumberResponse> => {
+  
+  const res = await fetch(getDeleteV1TeamsTeamNamePostsPostNumberUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: deleteV1TeamsTeamNamePostsPostNumberResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: deleteV1TeamsTeamNamePostsPostNumberResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as deleteV1TeamsTeamNamePostsPostNumberResponse
+  return { data, status: res.status, headers: res.headers } as deleteV1TeamsTeamNamePostsPostNumberResponse
 }
+
+
 
 /**
  * @summary List comments on a post
@@ -560,46 +546,41 @@ export type getV1TeamsTeamNamePostsPostNumberCommentsResponse200 = {
   data: GetV1TeamsTeamNamePostsPostNumberComments200
   status: 200
 }
+    
+export type getV1TeamsTeamNamePostsPostNumberCommentsResponseComposite = getV1TeamsTeamNamePostsPostNumberCommentsResponse200;
+    
+export type getV1TeamsTeamNamePostsPostNumberCommentsResponse = getV1TeamsTeamNamePostsPostNumberCommentsResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNamePostsPostNumberCommentsResponseComposite =
-  getV1TeamsTeamNamePostsPostNumberCommentsResponse200
+export const getGetV1TeamsTeamNamePostsPostNumberCommentsUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type getV1TeamsTeamNamePostsPostNumberCommentsResponse =
-  getV1TeamsTeamNamePostsPostNumberCommentsResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNamePostsPostNumberCommentsUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}/comments`
 }
 
-export const getV1TeamsTeamNamePostsPostNumberComments = async (
-  teamName: string,
-  postNumber: number,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNamePostsPostNumberCommentsResponse> => {
-  const res = await fetch(
-    getGetV1TeamsTeamNamePostsPostNumberCommentsUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "GET",
-    }
-  )
+export const getV1TeamsTeamNamePostsPostNumberComments = async (teamName: string,
+    postNumber: number, options?: RequestInit): Promise<getV1TeamsTeamNamePostsPostNumberCommentsResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNamePostsPostNumberCommentsUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNamePostsPostNumberCommentsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNamePostsPostNumberCommentsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNamePostsPostNumberCommentsResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNamePostsPostNumberCommentsResponse
 }
+
+
 
 /**
  * @summary Create a comment
@@ -608,49 +589,43 @@ export type postV1TeamsTeamNamePostsPostNumberCommentsResponse201 = {
   data: Comment
   status: 201
 }
+    
+export type postV1TeamsTeamNamePostsPostNumberCommentsResponseComposite = postV1TeamsTeamNamePostsPostNumberCommentsResponse201;
+    
+export type postV1TeamsTeamNamePostsPostNumberCommentsResponse = postV1TeamsTeamNamePostsPostNumberCommentsResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNamePostsPostNumberCommentsResponseComposite =
-  postV1TeamsTeamNamePostsPostNumberCommentsResponse201
+export const getPostV1TeamsTeamNamePostsPostNumberCommentsUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type postV1TeamsTeamNamePostsPostNumberCommentsResponse =
-  postV1TeamsTeamNamePostsPostNumberCommentsResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNamePostsPostNumberCommentsUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}/comments`
 }
 
-export const postV1TeamsTeamNamePostsPostNumberComments = async (
-  teamName: string,
-  postNumber: number,
-  postV1TeamsTeamNamePostsPostNumberCommentsBody: PostV1TeamsTeamNamePostsPostNumberCommentsBody,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNamePostsPostNumberCommentsResponse> => {
-  const res = await fetch(
-    getPostV1TeamsTeamNamePostsPostNumberCommentsUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...options?.headers },
-      body: JSON.stringify(postV1TeamsTeamNamePostsPostNumberCommentsBody),
-    }
-  )
+export const postV1TeamsTeamNamePostsPostNumberComments = async (teamName: string,
+    postNumber: number,
+    postV1TeamsTeamNamePostsPostNumberCommentsBody: PostV1TeamsTeamNamePostsPostNumberCommentsBody, options?: RequestInit): Promise<postV1TeamsTeamNamePostsPostNumberCommentsResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNamePostsPostNumberCommentsUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      postV1TeamsTeamNamePostsPostNumberCommentsBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNamePostsPostNumberCommentsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNamePostsPostNumberCommentsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNamePostsPostNumberCommentsResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNamePostsPostNumberCommentsResponse
 }
+
+
 
 /**
  * @summary Get a comment
@@ -659,60 +634,50 @@ export type getV1TeamsTeamNameCommentsCommentIdResponse200 = {
   data: Comment
   status: 200
 }
+    
+export type getV1TeamsTeamNameCommentsCommentIdResponseComposite = getV1TeamsTeamNameCommentsCommentIdResponse200;
+    
+export type getV1TeamsTeamNameCommentsCommentIdResponse = getV1TeamsTeamNameCommentsCommentIdResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNameCommentsCommentIdResponseComposite =
-  getV1TeamsTeamNameCommentsCommentIdResponse200
-
-export type getV1TeamsTeamNameCommentsCommentIdResponse =
-  getV1TeamsTeamNameCommentsCommentIdResponseComposite & {
-    headers: Headers
-  }
-
-export const getGetV1TeamsTeamNameCommentsCommentIdUrl = (
-  teamName: string,
-  commentId: number,
-  params?: GetV1TeamsTeamNameCommentsCommentIdParams
-) => {
-  const normalizedParams = new URLSearchParams()
+export const getGetV1TeamsTeamNameCommentsCommentIdUrl = (teamName: string,
+    commentId: number,
+    params?: GetV1TeamsTeamNameCommentsCommentIdParams,) => {
+  const normalizedParams = new URLSearchParams();
 
   Object.entries(params || {}).forEach(([key, value]) => {
+    
     if (value !== undefined) {
-      normalizedParams.append(key, value === null ? "null" : value.toString())
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
     }
-  })
+  });
 
-  const stringifiedParams = normalizedParams.toString()
+  const stringifiedParams = normalizedParams.toString();
 
-  return stringifiedParams.length > 0
-    ? `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}?${stringifiedParams}`
-    : `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}`
+  return stringifiedParams.length > 0 ? `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}?${stringifiedParams}` : `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}`
 }
 
-export const getV1TeamsTeamNameCommentsCommentId = async (
-  teamName: string,
-  commentId: number,
-  params?: GetV1TeamsTeamNameCommentsCommentIdParams,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameCommentsCommentIdResponse> => {
-  const res = await fetch(
-    getGetV1TeamsTeamNameCommentsCommentIdUrl(teamName, commentId, params),
-    {
-      ...options,
-      method: "GET",
-    }
-  )
+export const getV1TeamsTeamNameCommentsCommentId = async (teamName: string,
+    commentId: number,
+    params?: GetV1TeamsTeamNameCommentsCommentIdParams, options?: RequestInit): Promise<getV1TeamsTeamNameCommentsCommentIdResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameCommentsCommentIdUrl(teamName,commentId,params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameCommentsCommentIdResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNameCommentsCommentIdResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameCommentsCommentIdResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameCommentsCommentIdResponse
 }
+
+
 
 /**
  * @summary Update a comment
@@ -721,49 +686,43 @@ export type patchV1TeamsTeamNameCommentsCommentIdResponse200 = {
   data: Comment
   status: 200
 }
+    
+export type patchV1TeamsTeamNameCommentsCommentIdResponseComposite = patchV1TeamsTeamNameCommentsCommentIdResponse200;
+    
+export type patchV1TeamsTeamNameCommentsCommentIdResponse = patchV1TeamsTeamNameCommentsCommentIdResponseComposite & {
+  headers: Headers;
+}
 
-export type patchV1TeamsTeamNameCommentsCommentIdResponseComposite =
-  patchV1TeamsTeamNameCommentsCommentIdResponse200
+export const getPatchV1TeamsTeamNameCommentsCommentIdUrl = (teamName: string,
+    commentId: number,) => {
 
-export type patchV1TeamsTeamNameCommentsCommentIdResponse =
-  patchV1TeamsTeamNameCommentsCommentIdResponseComposite & {
-    headers: Headers
-  }
 
-export const getPatchV1TeamsTeamNameCommentsCommentIdUrl = (
-  teamName: string,
-  commentId: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}`
 }
 
-export const patchV1TeamsTeamNameCommentsCommentId = async (
-  teamName: string,
-  commentId: number,
-  patchV1TeamsTeamNameCommentsCommentIdBody: PatchV1TeamsTeamNameCommentsCommentIdBody,
-  options?: RequestInit
-): Promise<patchV1TeamsTeamNameCommentsCommentIdResponse> => {
-  const res = await fetch(
-    getPatchV1TeamsTeamNameCommentsCommentIdUrl(teamName, commentId),
-    {
-      ...options,
-      method: "PATCH",
-      headers: { "Content-Type": "application/json", ...options?.headers },
-      body: JSON.stringify(patchV1TeamsTeamNameCommentsCommentIdBody),
-    }
-  )
+export const patchV1TeamsTeamNameCommentsCommentId = async (teamName: string,
+    commentId: number,
+    patchV1TeamsTeamNameCommentsCommentIdBody: PatchV1TeamsTeamNameCommentsCommentIdBody, options?: RequestInit): Promise<patchV1TeamsTeamNameCommentsCommentIdResponse> => {
+  
+  const res = await fetch(getPatchV1TeamsTeamNameCommentsCommentIdUrl(teamName,commentId),
+  {      
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      patchV1TeamsTeamNameCommentsCommentIdBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: patchV1TeamsTeamNameCommentsCommentIdResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: patchV1TeamsTeamNameCommentsCommentIdResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as patchV1TeamsTeamNameCommentsCommentIdResponse
+  return { data, status: res.status, headers: res.headers } as patchV1TeamsTeamNameCommentsCommentIdResponse
 }
+
+
 
 /**
  * @summary Delete a comment
@@ -772,46 +731,41 @@ export type deleteV1TeamsTeamNameCommentsCommentIdResponse204 = {
   data: void
   status: 204
 }
+    
+export type deleteV1TeamsTeamNameCommentsCommentIdResponseComposite = deleteV1TeamsTeamNameCommentsCommentIdResponse204;
+    
+export type deleteV1TeamsTeamNameCommentsCommentIdResponse = deleteV1TeamsTeamNameCommentsCommentIdResponseComposite & {
+  headers: Headers;
+}
 
-export type deleteV1TeamsTeamNameCommentsCommentIdResponseComposite =
-  deleteV1TeamsTeamNameCommentsCommentIdResponse204
+export const getDeleteV1TeamsTeamNameCommentsCommentIdUrl = (teamName: string,
+    commentId: number,) => {
 
-export type deleteV1TeamsTeamNameCommentsCommentIdResponse =
-  deleteV1TeamsTeamNameCommentsCommentIdResponseComposite & {
-    headers: Headers
-  }
 
-export const getDeleteV1TeamsTeamNameCommentsCommentIdUrl = (
-  teamName: string,
-  commentId: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}`
 }
 
-export const deleteV1TeamsTeamNameCommentsCommentId = async (
-  teamName: string,
-  commentId: number,
-  options?: RequestInit
-): Promise<deleteV1TeamsTeamNameCommentsCommentIdResponse> => {
-  const res = await fetch(
-    getDeleteV1TeamsTeamNameCommentsCommentIdUrl(teamName, commentId),
-    {
-      ...options,
-      method: "DELETE",
-    }
-  )
+export const deleteV1TeamsTeamNameCommentsCommentId = async (teamName: string,
+    commentId: number, options?: RequestInit): Promise<deleteV1TeamsTeamNameCommentsCommentIdResponse> => {
+  
+  const res = await fetch(getDeleteV1TeamsTeamNameCommentsCommentIdUrl(teamName,commentId),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: deleteV1TeamsTeamNameCommentsCommentIdResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: deleteV1TeamsTeamNameCommentsCommentIdResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as deleteV1TeamsTeamNameCommentsCommentIdResponse
+  return { data, status: res.status, headers: res.headers } as deleteV1TeamsTeamNameCommentsCommentIdResponse
 }
+
+
 
 /**
  * @summary List all team comments
@@ -820,39 +774,39 @@ export type getV1TeamsTeamNameCommentsResponse200 = {
   data: GetV1TeamsTeamNameComments200
   status: 200
 }
+    
+export type getV1TeamsTeamNameCommentsResponseComposite = getV1TeamsTeamNameCommentsResponse200;
+    
+export type getV1TeamsTeamNameCommentsResponse = getV1TeamsTeamNameCommentsResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNameCommentsResponseComposite =
-  getV1TeamsTeamNameCommentsResponse200
+export const getGetV1TeamsTeamNameCommentsUrl = (teamName: string,) => {
 
-export type getV1TeamsTeamNameCommentsResponse =
-  getV1TeamsTeamNameCommentsResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNameCommentsUrl = (teamName: string) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/comments`
 }
 
-export const getV1TeamsTeamNameComments = async (
-  teamName: string,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameCommentsResponse> => {
-  const res = await fetch(getGetV1TeamsTeamNameCommentsUrl(teamName), {
+export const getV1TeamsTeamNameComments = async (teamName: string, options?: RequestInit): Promise<getV1TeamsTeamNameCommentsResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameCommentsUrl(teamName),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameCommentsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNameCommentsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameCommentsResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameCommentsResponse
 }
+
+
 
 /**
  * @summary List post stargazers
@@ -861,46 +815,41 @@ export type getV1TeamsTeamNamePostsPostNumberStargazersResponse200 = {
   data: GetV1TeamsTeamNamePostsPostNumberStargazers200
   status: 200
 }
+    
+export type getV1TeamsTeamNamePostsPostNumberStargazersResponseComposite = getV1TeamsTeamNamePostsPostNumberStargazersResponse200;
+    
+export type getV1TeamsTeamNamePostsPostNumberStargazersResponse = getV1TeamsTeamNamePostsPostNumberStargazersResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNamePostsPostNumberStargazersResponseComposite =
-  getV1TeamsTeamNamePostsPostNumberStargazersResponse200
+export const getGetV1TeamsTeamNamePostsPostNumberStargazersUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type getV1TeamsTeamNamePostsPostNumberStargazersResponse =
-  getV1TeamsTeamNamePostsPostNumberStargazersResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNamePostsPostNumberStargazersUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}/stargazers`
 }
 
-export const getV1TeamsTeamNamePostsPostNumberStargazers = async (
-  teamName: string,
-  postNumber: number,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNamePostsPostNumberStargazersResponse> => {
-  const res = await fetch(
-    getGetV1TeamsTeamNamePostsPostNumberStargazersUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "GET",
-    }
-  )
+export const getV1TeamsTeamNamePostsPostNumberStargazers = async (teamName: string,
+    postNumber: number, options?: RequestInit): Promise<getV1TeamsTeamNamePostsPostNumberStargazersResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNamePostsPostNumberStargazersUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNamePostsPostNumberStargazersResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNamePostsPostNumberStargazersResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNamePostsPostNumberStargazersResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNamePostsPostNumberStargazersResponse
 }
+
+
 
 /**
  * @summary Star a post
@@ -909,49 +858,43 @@ export type postV1TeamsTeamNamePostsPostNumberStarResponse204 = {
   data: void
   status: 204
 }
+    
+export type postV1TeamsTeamNamePostsPostNumberStarResponseComposite = postV1TeamsTeamNamePostsPostNumberStarResponse204;
+    
+export type postV1TeamsTeamNamePostsPostNumberStarResponse = postV1TeamsTeamNamePostsPostNumberStarResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNamePostsPostNumberStarResponseComposite =
-  postV1TeamsTeamNamePostsPostNumberStarResponse204
+export const getPostV1TeamsTeamNamePostsPostNumberStarUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type postV1TeamsTeamNamePostsPostNumberStarResponse =
-  postV1TeamsTeamNamePostsPostNumberStarResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNamePostsPostNumberStarUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}/star`
 }
 
-export const postV1TeamsTeamNamePostsPostNumberStar = async (
-  teamName: string,
-  postNumber: number,
-  postV1TeamsTeamNamePostsPostNumberStarBody: PostV1TeamsTeamNamePostsPostNumberStarBody,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNamePostsPostNumberStarResponse> => {
-  const res = await fetch(
-    getPostV1TeamsTeamNamePostsPostNumberStarUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...options?.headers },
-      body: JSON.stringify(postV1TeamsTeamNamePostsPostNumberStarBody),
-    }
-  )
+export const postV1TeamsTeamNamePostsPostNumberStar = async (teamName: string,
+    postNumber: number,
+    postV1TeamsTeamNamePostsPostNumberStarBody: PostV1TeamsTeamNamePostsPostNumberStarBody, options?: RequestInit): Promise<postV1TeamsTeamNamePostsPostNumberStarResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNamePostsPostNumberStarUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      postV1TeamsTeamNamePostsPostNumberStarBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNamePostsPostNumberStarResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNamePostsPostNumberStarResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNamePostsPostNumberStarResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNamePostsPostNumberStarResponse
 }
+
+
 
 /**
  * @summary Unstar a post
@@ -960,46 +903,41 @@ export type deleteV1TeamsTeamNamePostsPostNumberStarResponse204 = {
   data: void
   status: 204
 }
+    
+export type deleteV1TeamsTeamNamePostsPostNumberStarResponseComposite = deleteV1TeamsTeamNamePostsPostNumberStarResponse204;
+    
+export type deleteV1TeamsTeamNamePostsPostNumberStarResponse = deleteV1TeamsTeamNamePostsPostNumberStarResponseComposite & {
+  headers: Headers;
+}
 
-export type deleteV1TeamsTeamNamePostsPostNumberStarResponseComposite =
-  deleteV1TeamsTeamNamePostsPostNumberStarResponse204
+export const getDeleteV1TeamsTeamNamePostsPostNumberStarUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type deleteV1TeamsTeamNamePostsPostNumberStarResponse =
-  deleteV1TeamsTeamNamePostsPostNumberStarResponseComposite & {
-    headers: Headers
-  }
 
-export const getDeleteV1TeamsTeamNamePostsPostNumberStarUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}/star`
 }
 
-export const deleteV1TeamsTeamNamePostsPostNumberStar = async (
-  teamName: string,
-  postNumber: number,
-  options?: RequestInit
-): Promise<deleteV1TeamsTeamNamePostsPostNumberStarResponse> => {
-  const res = await fetch(
-    getDeleteV1TeamsTeamNamePostsPostNumberStarUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "DELETE",
-    }
-  )
+export const deleteV1TeamsTeamNamePostsPostNumberStar = async (teamName: string,
+    postNumber: number, options?: RequestInit): Promise<deleteV1TeamsTeamNamePostsPostNumberStarResponse> => {
+  
+  const res = await fetch(getDeleteV1TeamsTeamNamePostsPostNumberStarUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: deleteV1TeamsTeamNamePostsPostNumberStarResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: deleteV1TeamsTeamNamePostsPostNumberStarResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as deleteV1TeamsTeamNamePostsPostNumberStarResponse
+  return { data, status: res.status, headers: res.headers } as deleteV1TeamsTeamNamePostsPostNumberStarResponse
 }
+
+
 
 /**
  * @summary List comment stargazers
@@ -1008,45 +946,41 @@ export type getV1TeamsTeamNameCommentsCommentIdStargazersResponse200 = {
   data: GetV1TeamsTeamNameCommentsCommentIdStargazers200
   status: 200
 }
+    
+export type getV1TeamsTeamNameCommentsCommentIdStargazersResponseComposite = getV1TeamsTeamNameCommentsCommentIdStargazersResponse200;
+    
+export type getV1TeamsTeamNameCommentsCommentIdStargazersResponse = getV1TeamsTeamNameCommentsCommentIdStargazersResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNameCommentsCommentIdStargazersResponseComposite =
-  getV1TeamsTeamNameCommentsCommentIdStargazersResponse200
+export const getGetV1TeamsTeamNameCommentsCommentIdStargazersUrl = (teamName: string,
+    commentId: number,) => {
 
-export type getV1TeamsTeamNameCommentsCommentIdStargazersResponse =
-  getV1TeamsTeamNameCommentsCommentIdStargazersResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNameCommentsCommentIdStargazersUrl = (
-  teamName: string,
-  commentId: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}/stargazers`
 }
 
-export const getV1TeamsTeamNameCommentsCommentIdStargazers = async (
-  teamName: string,
-  commentId: number,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameCommentsCommentIdStargazersResponse> => {
-  const res = await fetch(
-    getGetV1TeamsTeamNameCommentsCommentIdStargazersUrl(teamName, commentId),
-    {
-      ...options,
-      method: "GET",
-    }
-  )
+export const getV1TeamsTeamNameCommentsCommentIdStargazers = async (teamName: string,
+    commentId: number, options?: RequestInit): Promise<getV1TeamsTeamNameCommentsCommentIdStargazersResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameCommentsCommentIdStargazersUrl(teamName,commentId),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameCommentsCommentIdStargazersResponse["data"] =
-    body ? JSON.parse(body) : {}
+  const data: getV1TeamsTeamNameCommentsCommentIdStargazersResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameCommentsCommentIdStargazersResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameCommentsCommentIdStargazersResponse
 }
+
+
 
 /**
  * @summary Star a comment
@@ -1055,49 +989,43 @@ export type postV1TeamsTeamNameCommentsCommentIdStarResponse204 = {
   data: void
   status: 204
 }
+    
+export type postV1TeamsTeamNameCommentsCommentIdStarResponseComposite = postV1TeamsTeamNameCommentsCommentIdStarResponse204;
+    
+export type postV1TeamsTeamNameCommentsCommentIdStarResponse = postV1TeamsTeamNameCommentsCommentIdStarResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNameCommentsCommentIdStarResponseComposite =
-  postV1TeamsTeamNameCommentsCommentIdStarResponse204
+export const getPostV1TeamsTeamNameCommentsCommentIdStarUrl = (teamName: string,
+    commentId: number,) => {
 
-export type postV1TeamsTeamNameCommentsCommentIdStarResponse =
-  postV1TeamsTeamNameCommentsCommentIdStarResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNameCommentsCommentIdStarUrl = (
-  teamName: string,
-  commentId: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}/star`
 }
 
-export const postV1TeamsTeamNameCommentsCommentIdStar = async (
-  teamName: string,
-  commentId: number,
-  postV1TeamsTeamNameCommentsCommentIdStarBody: PostV1TeamsTeamNameCommentsCommentIdStarBody,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNameCommentsCommentIdStarResponse> => {
-  const res = await fetch(
-    getPostV1TeamsTeamNameCommentsCommentIdStarUrl(teamName, commentId),
-    {
-      ...options,
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...options?.headers },
-      body: JSON.stringify(postV1TeamsTeamNameCommentsCommentIdStarBody),
-    }
-  )
+export const postV1TeamsTeamNameCommentsCommentIdStar = async (teamName: string,
+    commentId: number,
+    postV1TeamsTeamNameCommentsCommentIdStarBody: PostV1TeamsTeamNameCommentsCommentIdStarBody, options?: RequestInit): Promise<postV1TeamsTeamNameCommentsCommentIdStarResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNameCommentsCommentIdStarUrl(teamName,commentId),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      postV1TeamsTeamNameCommentsCommentIdStarBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNameCommentsCommentIdStarResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNameCommentsCommentIdStarResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNameCommentsCommentIdStarResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNameCommentsCommentIdStarResponse
 }
+
+
 
 /**
  * @summary Unstar a comment
@@ -1106,46 +1034,41 @@ export type deleteV1TeamsTeamNameCommentsCommentIdStarResponse204 = {
   data: void
   status: 204
 }
+    
+export type deleteV1TeamsTeamNameCommentsCommentIdStarResponseComposite = deleteV1TeamsTeamNameCommentsCommentIdStarResponse204;
+    
+export type deleteV1TeamsTeamNameCommentsCommentIdStarResponse = deleteV1TeamsTeamNameCommentsCommentIdStarResponseComposite & {
+  headers: Headers;
+}
 
-export type deleteV1TeamsTeamNameCommentsCommentIdStarResponseComposite =
-  deleteV1TeamsTeamNameCommentsCommentIdStarResponse204
+export const getDeleteV1TeamsTeamNameCommentsCommentIdStarUrl = (teamName: string,
+    commentId: number,) => {
 
-export type deleteV1TeamsTeamNameCommentsCommentIdStarResponse =
-  deleteV1TeamsTeamNameCommentsCommentIdStarResponseComposite & {
-    headers: Headers
-  }
 
-export const getDeleteV1TeamsTeamNameCommentsCommentIdStarUrl = (
-  teamName: string,
-  commentId: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/comments/${commentId}/star`
 }
 
-export const deleteV1TeamsTeamNameCommentsCommentIdStar = async (
-  teamName: string,
-  commentId: number,
-  options?: RequestInit
-): Promise<deleteV1TeamsTeamNameCommentsCommentIdStarResponse> => {
-  const res = await fetch(
-    getDeleteV1TeamsTeamNameCommentsCommentIdStarUrl(teamName, commentId),
-    {
-      ...options,
-      method: "DELETE",
-    }
-  )
+export const deleteV1TeamsTeamNameCommentsCommentIdStar = async (teamName: string,
+    commentId: number, options?: RequestInit): Promise<deleteV1TeamsTeamNameCommentsCommentIdStarResponse> => {
+  
+  const res = await fetch(getDeleteV1TeamsTeamNameCommentsCommentIdStarUrl(teamName,commentId),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: deleteV1TeamsTeamNameCommentsCommentIdStarResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: deleteV1TeamsTeamNameCommentsCommentIdStarResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as deleteV1TeamsTeamNameCommentsCommentIdStarResponse
+  return { data, status: res.status, headers: res.headers } as deleteV1TeamsTeamNameCommentsCommentIdStarResponse
 }
+
+
 
 /**
  * @summary List post watchers
@@ -1154,46 +1077,41 @@ export type getV1TeamsTeamNamePostsPostNumberWatchersResponse200 = {
   data: GetV1TeamsTeamNamePostsPostNumberWatchers200
   status: 200
 }
+    
+export type getV1TeamsTeamNamePostsPostNumberWatchersResponseComposite = getV1TeamsTeamNamePostsPostNumberWatchersResponse200;
+    
+export type getV1TeamsTeamNamePostsPostNumberWatchersResponse = getV1TeamsTeamNamePostsPostNumberWatchersResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNamePostsPostNumberWatchersResponseComposite =
-  getV1TeamsTeamNamePostsPostNumberWatchersResponse200
+export const getGetV1TeamsTeamNamePostsPostNumberWatchersUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type getV1TeamsTeamNamePostsPostNumberWatchersResponse =
-  getV1TeamsTeamNamePostsPostNumberWatchersResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNamePostsPostNumberWatchersUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}/watchers`
 }
 
-export const getV1TeamsTeamNamePostsPostNumberWatchers = async (
-  teamName: string,
-  postNumber: number,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNamePostsPostNumberWatchersResponse> => {
-  const res = await fetch(
-    getGetV1TeamsTeamNamePostsPostNumberWatchersUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "GET",
-    }
-  )
+export const getV1TeamsTeamNamePostsPostNumberWatchers = async (teamName: string,
+    postNumber: number, options?: RequestInit): Promise<getV1TeamsTeamNamePostsPostNumberWatchersResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNamePostsPostNumberWatchersUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNamePostsPostNumberWatchersResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNamePostsPostNumberWatchersResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNamePostsPostNumberWatchersResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNamePostsPostNumberWatchersResponse
 }
+
+
 
 /**
  * @summary Watch a post
@@ -1202,46 +1120,41 @@ export type postV1TeamsTeamNamePostsPostNumberWatchResponse204 = {
   data: void
   status: 204
 }
+    
+export type postV1TeamsTeamNamePostsPostNumberWatchResponseComposite = postV1TeamsTeamNamePostsPostNumberWatchResponse204;
+    
+export type postV1TeamsTeamNamePostsPostNumberWatchResponse = postV1TeamsTeamNamePostsPostNumberWatchResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNamePostsPostNumberWatchResponseComposite =
-  postV1TeamsTeamNamePostsPostNumberWatchResponse204
+export const getPostV1TeamsTeamNamePostsPostNumberWatchUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type postV1TeamsTeamNamePostsPostNumberWatchResponse =
-  postV1TeamsTeamNamePostsPostNumberWatchResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNamePostsPostNumberWatchUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}/watch`
 }
 
-export const postV1TeamsTeamNamePostsPostNumberWatch = async (
-  teamName: string,
-  postNumber: number,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNamePostsPostNumberWatchResponse> => {
-  const res = await fetch(
-    getPostV1TeamsTeamNamePostsPostNumberWatchUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "POST",
-    }
-  )
+export const postV1TeamsTeamNamePostsPostNumberWatch = async (teamName: string,
+    postNumber: number, options?: RequestInit): Promise<postV1TeamsTeamNamePostsPostNumberWatchResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNamePostsPostNumberWatchUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNamePostsPostNumberWatchResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNamePostsPostNumberWatchResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNamePostsPostNumberWatchResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNamePostsPostNumberWatchResponse
 }
+
+
 
 /**
  * @summary Unwatch a post
@@ -1250,46 +1163,41 @@ export type deleteV1TeamsTeamNamePostsPostNumberWatchResponse204 = {
   data: void
   status: 204
 }
+    
+export type deleteV1TeamsTeamNamePostsPostNumberWatchResponseComposite = deleteV1TeamsTeamNamePostsPostNumberWatchResponse204;
+    
+export type deleteV1TeamsTeamNamePostsPostNumberWatchResponse = deleteV1TeamsTeamNamePostsPostNumberWatchResponseComposite & {
+  headers: Headers;
+}
 
-export type deleteV1TeamsTeamNamePostsPostNumberWatchResponseComposite =
-  deleteV1TeamsTeamNamePostsPostNumberWatchResponse204
+export const getDeleteV1TeamsTeamNamePostsPostNumberWatchUrl = (teamName: string,
+    postNumber: number,) => {
 
-export type deleteV1TeamsTeamNamePostsPostNumberWatchResponse =
-  deleteV1TeamsTeamNamePostsPostNumberWatchResponseComposite & {
-    headers: Headers
-  }
 
-export const getDeleteV1TeamsTeamNamePostsPostNumberWatchUrl = (
-  teamName: string,
-  postNumber: number
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/posts/${postNumber}/watch`
 }
 
-export const deleteV1TeamsTeamNamePostsPostNumberWatch = async (
-  teamName: string,
-  postNumber: number,
-  options?: RequestInit
-): Promise<deleteV1TeamsTeamNamePostsPostNumberWatchResponse> => {
-  const res = await fetch(
-    getDeleteV1TeamsTeamNamePostsPostNumberWatchUrl(teamName, postNumber),
-    {
-      ...options,
-      method: "DELETE",
-    }
-  )
+export const deleteV1TeamsTeamNamePostsPostNumberWatch = async (teamName: string,
+    postNumber: number, options?: RequestInit): Promise<deleteV1TeamsTeamNamePostsPostNumberWatchResponse> => {
+  
+  const res = await fetch(getDeleteV1TeamsTeamNamePostsPostNumberWatchUrl(teamName,postNumber),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: deleteV1TeamsTeamNamePostsPostNumberWatchResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: deleteV1TeamsTeamNamePostsPostNumberWatchResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as deleteV1TeamsTeamNamePostsPostNumberWatchResponse
+  return { data, status: res.status, headers: res.headers } as deleteV1TeamsTeamNamePostsPostNumberWatchResponse
 }
+
+
 
 /**
  * @summary Batch move categories
@@ -1298,47 +1206,41 @@ export type postV1TeamsTeamNameCategoriesBatchMoveResponse200 = {
   data: PostV1TeamsTeamNameCategoriesBatchMove200
   status: 200
 }
+    
+export type postV1TeamsTeamNameCategoriesBatchMoveResponseComposite = postV1TeamsTeamNameCategoriesBatchMoveResponse200;
+    
+export type postV1TeamsTeamNameCategoriesBatchMoveResponse = postV1TeamsTeamNameCategoriesBatchMoveResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNameCategoriesBatchMoveResponseComposite =
-  postV1TeamsTeamNameCategoriesBatchMoveResponse200
+export const getPostV1TeamsTeamNameCategoriesBatchMoveUrl = (teamName: string,) => {
 
-export type postV1TeamsTeamNameCategoriesBatchMoveResponse =
-  postV1TeamsTeamNameCategoriesBatchMoveResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNameCategoriesBatchMoveUrl = (
-  teamName: string
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/categories/batch_move`
 }
 
-export const postV1TeamsTeamNameCategoriesBatchMove = async (
-  teamName: string,
-  postV1TeamsTeamNameCategoriesBatchMoveBody: PostV1TeamsTeamNameCategoriesBatchMoveBody,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNameCategoriesBatchMoveResponse> => {
-  const res = await fetch(
-    getPostV1TeamsTeamNameCategoriesBatchMoveUrl(teamName),
-    {
-      ...options,
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...options?.headers },
-      body: JSON.stringify(postV1TeamsTeamNameCategoriesBatchMoveBody),
-    }
-  )
+export const postV1TeamsTeamNameCategoriesBatchMove = async (teamName: string,
+    postV1TeamsTeamNameCategoriesBatchMoveBody: PostV1TeamsTeamNameCategoriesBatchMoveBody, options?: RequestInit): Promise<postV1TeamsTeamNameCategoriesBatchMoveResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNameCategoriesBatchMoveUrl(teamName),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      postV1TeamsTeamNameCategoriesBatchMoveBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNameCategoriesBatchMoveResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNameCategoriesBatchMoveResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNameCategoriesBatchMoveResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNameCategoriesBatchMoveResponse
 }
+
+
 
 /**
  * @summary List tags
@@ -1347,39 +1249,39 @@ export type getV1TeamsTeamNameTagsResponse200 = {
   data: GetV1TeamsTeamNameTags200
   status: 200
 }
+    
+export type getV1TeamsTeamNameTagsResponseComposite = getV1TeamsTeamNameTagsResponse200;
+    
+export type getV1TeamsTeamNameTagsResponse = getV1TeamsTeamNameTagsResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNameTagsResponseComposite =
-  getV1TeamsTeamNameTagsResponse200
+export const getGetV1TeamsTeamNameTagsUrl = (teamName: string,) => {
 
-export type getV1TeamsTeamNameTagsResponse =
-  getV1TeamsTeamNameTagsResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNameTagsUrl = (teamName: string) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/tags`
 }
 
-export const getV1TeamsTeamNameTags = async (
-  teamName: string,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameTagsResponse> => {
-  const res = await fetch(getGetV1TeamsTeamNameTagsUrl(teamName), {
+export const getV1TeamsTeamNameTags = async (teamName: string, options?: RequestInit): Promise<getV1TeamsTeamNameTagsResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameTagsUrl(teamName),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameTagsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNameTagsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameTagsResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameTagsResponse
 }
+
+
 
 /**
  * @summary Get team invitation URL
@@ -1388,39 +1290,39 @@ export type getV1TeamsTeamNameInvitationResponse200 = {
   data: GetV1TeamsTeamNameInvitation200
   status: 200
 }
+    
+export type getV1TeamsTeamNameInvitationResponseComposite = getV1TeamsTeamNameInvitationResponse200;
+    
+export type getV1TeamsTeamNameInvitationResponse = getV1TeamsTeamNameInvitationResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNameInvitationResponseComposite =
-  getV1TeamsTeamNameInvitationResponse200
+export const getGetV1TeamsTeamNameInvitationUrl = (teamName: string,) => {
 
-export type getV1TeamsTeamNameInvitationResponse =
-  getV1TeamsTeamNameInvitationResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNameInvitationUrl = (teamName: string) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/invitation`
 }
 
-export const getV1TeamsTeamNameInvitation = async (
-  teamName: string,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameInvitationResponse> => {
-  const res = await fetch(getGetV1TeamsTeamNameInvitationUrl(teamName), {
+export const getV1TeamsTeamNameInvitation = async (teamName: string, options?: RequestInit): Promise<getV1TeamsTeamNameInvitationResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameInvitationUrl(teamName),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameInvitationResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNameInvitationResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameInvitationResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameInvitationResponse
 }
+
+
 
 /**
  * @summary Regenerate team invitation URL
@@ -1429,44 +1331,39 @@ export type postV1TeamsTeamNameInvitationRegeneratorResponse200 = {
   data: PostV1TeamsTeamNameInvitationRegenerator200
   status: 200
 }
+    
+export type postV1TeamsTeamNameInvitationRegeneratorResponseComposite = postV1TeamsTeamNameInvitationRegeneratorResponse200;
+    
+export type postV1TeamsTeamNameInvitationRegeneratorResponse = postV1TeamsTeamNameInvitationRegeneratorResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNameInvitationRegeneratorResponseComposite =
-  postV1TeamsTeamNameInvitationRegeneratorResponse200
+export const getPostV1TeamsTeamNameInvitationRegeneratorUrl = (teamName: string,) => {
 
-export type postV1TeamsTeamNameInvitationRegeneratorResponse =
-  postV1TeamsTeamNameInvitationRegeneratorResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNameInvitationRegeneratorUrl = (
-  teamName: string
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/invitation_regenerator`
 }
 
-export const postV1TeamsTeamNameInvitationRegenerator = async (
-  teamName: string,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNameInvitationRegeneratorResponse> => {
-  const res = await fetch(
-    getPostV1TeamsTeamNameInvitationRegeneratorUrl(teamName),
-    {
-      ...options,
-      method: "POST",
-    }
-  )
+export const postV1TeamsTeamNameInvitationRegenerator = async (teamName: string, options?: RequestInit): Promise<postV1TeamsTeamNameInvitationRegeneratorResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNameInvitationRegeneratorUrl(teamName),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNameInvitationRegeneratorResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNameInvitationRegeneratorResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNameInvitationRegeneratorResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNameInvitationRegeneratorResponse
 }
+
+
 
 /**
  * @summary List pending invitations
@@ -1475,39 +1372,39 @@ export type getV1TeamsTeamNameInvitationsResponse200 = {
   data: GetV1TeamsTeamNameInvitations200
   status: 200
 }
+    
+export type getV1TeamsTeamNameInvitationsResponseComposite = getV1TeamsTeamNameInvitationsResponse200;
+    
+export type getV1TeamsTeamNameInvitationsResponse = getV1TeamsTeamNameInvitationsResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNameInvitationsResponseComposite =
-  getV1TeamsTeamNameInvitationsResponse200
+export const getGetV1TeamsTeamNameInvitationsUrl = (teamName: string,) => {
 
-export type getV1TeamsTeamNameInvitationsResponse =
-  getV1TeamsTeamNameInvitationsResponseComposite & {
-    headers: Headers
-  }
 
-export const getGetV1TeamsTeamNameInvitationsUrl = (teamName: string) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/invitations`
 }
 
-export const getV1TeamsTeamNameInvitations = async (
-  teamName: string,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameInvitationsResponse> => {
-  const res = await fetch(getGetV1TeamsTeamNameInvitationsUrl(teamName), {
+export const getV1TeamsTeamNameInvitations = async (teamName: string, options?: RequestInit): Promise<getV1TeamsTeamNameInvitationsResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameInvitationsUrl(teamName),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameInvitationsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNameInvitationsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameInvitationsResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameInvitationsResponse
 }
+
+
 
 /**
  * @summary Send email invitations
@@ -1516,42 +1413,41 @@ export type postV1TeamsTeamNameInvitationsResponse201 = {
   data: PostV1TeamsTeamNameInvitations201
   status: 201
 }
+    
+export type postV1TeamsTeamNameInvitationsResponseComposite = postV1TeamsTeamNameInvitationsResponse201;
+    
+export type postV1TeamsTeamNameInvitationsResponse = postV1TeamsTeamNameInvitationsResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNameInvitationsResponseComposite =
-  postV1TeamsTeamNameInvitationsResponse201
+export const getPostV1TeamsTeamNameInvitationsUrl = (teamName: string,) => {
 
-export type postV1TeamsTeamNameInvitationsResponse =
-  postV1TeamsTeamNameInvitationsResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNameInvitationsUrl = (teamName: string) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/invitations`
 }
 
-export const postV1TeamsTeamNameInvitations = async (
-  teamName: string,
-  postV1TeamsTeamNameInvitationsBody: PostV1TeamsTeamNameInvitationsBody,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNameInvitationsResponse> => {
-  const res = await fetch(getPostV1TeamsTeamNameInvitationsUrl(teamName), {
+export const postV1TeamsTeamNameInvitations = async (teamName: string,
+    postV1TeamsTeamNameInvitationsBody: PostV1TeamsTeamNameInvitationsBody, options?: RequestInit): Promise<postV1TeamsTeamNameInvitationsResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNameInvitationsUrl(teamName),
+  {      
     ...options,
-    method: "POST",
-    headers: { "Content-Type": "application/json", ...options?.headers },
-    body: JSON.stringify(postV1TeamsTeamNameInvitationsBody),
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      postV1TeamsTeamNameInvitationsBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNameInvitationsResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNameInvitationsResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNameInvitationsResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNameInvitationsResponse
 }
+
+
 
 /**
  * @summary Delete an invitation
@@ -1560,46 +1456,41 @@ export type deleteV1TeamsTeamNameInvitationsCodeResponse204 = {
   data: void
   status: 204
 }
+    
+export type deleteV1TeamsTeamNameInvitationsCodeResponseComposite = deleteV1TeamsTeamNameInvitationsCodeResponse204;
+    
+export type deleteV1TeamsTeamNameInvitationsCodeResponse = deleteV1TeamsTeamNameInvitationsCodeResponseComposite & {
+  headers: Headers;
+}
 
-export type deleteV1TeamsTeamNameInvitationsCodeResponseComposite =
-  deleteV1TeamsTeamNameInvitationsCodeResponse204
+export const getDeleteV1TeamsTeamNameInvitationsCodeUrl = (teamName: string,
+    code: string,) => {
 
-export type deleteV1TeamsTeamNameInvitationsCodeResponse =
-  deleteV1TeamsTeamNameInvitationsCodeResponseComposite & {
-    headers: Headers
-  }
 
-export const getDeleteV1TeamsTeamNameInvitationsCodeUrl = (
-  teamName: string,
-  code: string
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/invitations/${code}`
 }
 
-export const deleteV1TeamsTeamNameInvitationsCode = async (
-  teamName: string,
-  code: string,
-  options?: RequestInit
-): Promise<deleteV1TeamsTeamNameInvitationsCodeResponse> => {
-  const res = await fetch(
-    getDeleteV1TeamsTeamNameInvitationsCodeUrl(teamName, code),
-    {
-      ...options,
-      method: "DELETE",
-    }
-  )
+export const deleteV1TeamsTeamNameInvitationsCode = async (teamName: string,
+    code: string, options?: RequestInit): Promise<deleteV1TeamsTeamNameInvitationsCodeResponse> => {
+  
+  const res = await fetch(getDeleteV1TeamsTeamNameInvitationsCodeUrl(teamName,code),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: deleteV1TeamsTeamNameInvitationsCodeResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: deleteV1TeamsTeamNameInvitationsCodeResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as deleteV1TeamsTeamNameInvitationsCodeResponse
+  return { data, status: res.status, headers: res.headers } as deleteV1TeamsTeamNameInvitationsCodeResponse
 }
+
+
 
 /**
  * @summary List emojis
@@ -1608,55 +1499,48 @@ export type getV1TeamsTeamNameEmojisResponse200 = {
   data: GetV1TeamsTeamNameEmojis200
   status: 200
 }
+    
+export type getV1TeamsTeamNameEmojisResponseComposite = getV1TeamsTeamNameEmojisResponse200;
+    
+export type getV1TeamsTeamNameEmojisResponse = getV1TeamsTeamNameEmojisResponseComposite & {
+  headers: Headers;
+}
 
-export type getV1TeamsTeamNameEmojisResponseComposite =
-  getV1TeamsTeamNameEmojisResponse200
-
-export type getV1TeamsTeamNameEmojisResponse =
-  getV1TeamsTeamNameEmojisResponseComposite & {
-    headers: Headers
-  }
-
-export const getGetV1TeamsTeamNameEmojisUrl = (
-  teamName: string,
-  params?: GetV1TeamsTeamNameEmojisParams
-) => {
-  const normalizedParams = new URLSearchParams()
+export const getGetV1TeamsTeamNameEmojisUrl = (teamName: string,
+    params?: GetV1TeamsTeamNameEmojisParams,) => {
+  const normalizedParams = new URLSearchParams();
 
   Object.entries(params || {}).forEach(([key, value]) => {
+    
     if (value !== undefined) {
-      normalizedParams.append(key, value === null ? "null" : value.toString())
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
     }
-  })
+  });
 
-  const stringifiedParams = normalizedParams.toString()
+  const stringifiedParams = normalizedParams.toString();
 
-  return stringifiedParams.length > 0
-    ? `https://api.esa.io/v1/teams/${teamName}/emojis?${stringifiedParams}`
-    : `https://api.esa.io/v1/teams/${teamName}/emojis`
+  return stringifiedParams.length > 0 ? `https://api.esa.io/v1/teams/${teamName}/emojis?${stringifiedParams}` : `https://api.esa.io/v1/teams/${teamName}/emojis`
 }
 
-export const getV1TeamsTeamNameEmojis = async (
-  teamName: string,
-  params?: GetV1TeamsTeamNameEmojisParams,
-  options?: RequestInit
-): Promise<getV1TeamsTeamNameEmojisResponse> => {
-  const res = await fetch(getGetV1TeamsTeamNameEmojisUrl(teamName, params), {
+export const getV1TeamsTeamNameEmojis = async (teamName: string,
+    params?: GetV1TeamsTeamNameEmojisParams, options?: RequestInit): Promise<getV1TeamsTeamNameEmojisResponse> => {
+  
+  const res = await fetch(getGetV1TeamsTeamNameEmojisUrl(teamName,params),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1TeamsTeamNameEmojisResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: getV1TeamsTeamNameEmojisResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as getV1TeamsTeamNameEmojisResponse
+  return { data, status: res.status, headers: res.headers } as getV1TeamsTeamNameEmojisResponse
 }
+
+
 
 /**
  * @summary Create a new emoji
@@ -1665,43 +1549,41 @@ export type postV1TeamsTeamNameEmojisResponse201 = {
   data: PostV1TeamsTeamNameEmojis201
   status: 201
 }
+    
+export type postV1TeamsTeamNameEmojisResponseComposite = postV1TeamsTeamNameEmojisResponse201;
+    
+export type postV1TeamsTeamNameEmojisResponse = postV1TeamsTeamNameEmojisResponseComposite & {
+  headers: Headers;
+}
 
-export type postV1TeamsTeamNameEmojisResponseComposite =
-  postV1TeamsTeamNameEmojisResponse201
+export const getPostV1TeamsTeamNameEmojisUrl = (teamName: string,) => {
 
-export type postV1TeamsTeamNameEmojisResponse =
-  postV1TeamsTeamNameEmojisResponseComposite & {
-    headers: Headers
-  }
 
-export const getPostV1TeamsTeamNameEmojisUrl = (teamName: string) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/emojis`
 }
 
-export const postV1TeamsTeamNameEmojis = async (
-  teamName: string,
-  postV1TeamsTeamNameEmojisBody:
-    | PostV1TeamsTeamNameEmojisBodyOne
-    | PostV1TeamsTeamNameEmojisBodyTwo,
-  options?: RequestInit
-): Promise<postV1TeamsTeamNameEmojisResponse> => {
-  const res = await fetch(getPostV1TeamsTeamNameEmojisUrl(teamName), {
+export const postV1TeamsTeamNameEmojis = async (teamName: string,
+    postV1TeamsTeamNameEmojisBody: PostV1TeamsTeamNameEmojisBodyOne | PostV1TeamsTeamNameEmojisBodyTwo, options?: RequestInit): Promise<postV1TeamsTeamNameEmojisResponse> => {
+  
+  const res = await fetch(getPostV1TeamsTeamNameEmojisUrl(teamName),
+  {      
     ...options,
-    method: "POST",
-    body: JSON.stringify(postV1TeamsTeamNameEmojisBody),
-  })
+    method: 'POST'
+    ,
+    body: JSON.stringify(
+      postV1TeamsTeamNameEmojisBody,)
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: postV1TeamsTeamNameEmojisResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: postV1TeamsTeamNameEmojisResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as postV1TeamsTeamNameEmojisResponse
+  return { data, status: res.status, headers: res.headers } as postV1TeamsTeamNameEmojisResponse
 }
+
+
 
 /**
  * @summary Delete an emoji
@@ -1710,46 +1592,41 @@ export type deleteV1TeamsTeamNameEmojisCodeResponse204 = {
   data: void
   status: 204
 }
+    
+export type deleteV1TeamsTeamNameEmojisCodeResponseComposite = deleteV1TeamsTeamNameEmojisCodeResponse204;
+    
+export type deleteV1TeamsTeamNameEmojisCodeResponse = deleteV1TeamsTeamNameEmojisCodeResponseComposite & {
+  headers: Headers;
+}
 
-export type deleteV1TeamsTeamNameEmojisCodeResponseComposite =
-  deleteV1TeamsTeamNameEmojisCodeResponse204
+export const getDeleteV1TeamsTeamNameEmojisCodeUrl = (teamName: string,
+    code: string,) => {
 
-export type deleteV1TeamsTeamNameEmojisCodeResponse =
-  deleteV1TeamsTeamNameEmojisCodeResponseComposite & {
-    headers: Headers
-  }
 
-export const getDeleteV1TeamsTeamNameEmojisCodeUrl = (
-  teamName: string,
-  code: string
-) => {
+  
+
   return `https://api.esa.io/v1/teams/${teamName}/emojis/${code}`
 }
 
-export const deleteV1TeamsTeamNameEmojisCode = async (
-  teamName: string,
-  code: string,
-  options?: RequestInit
-): Promise<deleteV1TeamsTeamNameEmojisCodeResponse> => {
-  const res = await fetch(
-    getDeleteV1TeamsTeamNameEmojisCodeUrl(teamName, code),
-    {
-      ...options,
-      method: "DELETE",
-    }
-  )
+export const deleteV1TeamsTeamNameEmojisCode = async (teamName: string,
+    code: string, options?: RequestInit): Promise<deleteV1TeamsTeamNameEmojisCodeResponse> => {
+  
+  const res = await fetch(getDeleteV1TeamsTeamNameEmojisCodeUrl(teamName,code),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: deleteV1TeamsTeamNameEmojisCodeResponse["data"] = body
-    ? JSON.parse(body)
-    : {}
+  const data: deleteV1TeamsTeamNameEmojisCodeResponse['data'] = body ? JSON.parse(body) : {}
 
-  return {
-    data,
-    status: res.status,
-    headers: res.headers,
-  } as deleteV1TeamsTeamNameEmojisCodeResponse
+  return { data, status: res.status, headers: res.headers } as deleteV1TeamsTeamNameEmojisCodeResponse
 }
+
+
 
 /**
  * @summary Get authenticated user
@@ -1758,40 +1635,44 @@ export type getV1UserResponse200 = {
   data: GetV1User200
   status: 200
 }
-
-export type getV1UserResponseComposite = getV1UserResponse200
-
+    
+export type getV1UserResponseComposite = getV1UserResponse200;
+    
 export type getV1UserResponse = getV1UserResponseComposite & {
-  headers: Headers
+  headers: Headers;
 }
 
-export const getGetV1UserUrl = (params?: GetV1UserParams) => {
-  const normalizedParams = new URLSearchParams()
+export const getGetV1UserUrl = (params?: GetV1UserParams,) => {
+  const normalizedParams = new URLSearchParams();
 
   Object.entries(params || {}).forEach(([key, value]) => {
+    
     if (value !== undefined) {
-      normalizedParams.append(key, value === null ? "null" : value.toString())
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
     }
-  })
+  });
 
-  const stringifiedParams = normalizedParams.toString()
+  const stringifiedParams = normalizedParams.toString();
 
-  return stringifiedParams.length > 0
-    ? `https://api.esa.io/v1/user?${stringifiedParams}`
-    : `https://api.esa.io/v1/user`
+  return stringifiedParams.length > 0 ? `https://api.esa.io/v1/user?${stringifiedParams}` : `https://api.esa.io/v1/user`
 }
 
-export const getV1User = async (
-  params?: GetV1UserParams,
-  options?: RequestInit
-): Promise<getV1UserResponse> => {
-  const res = await fetch(getGetV1UserUrl(params), {
+export const getV1User = async (params?: GetV1UserParams, options?: RequestInit): Promise<getV1UserResponse> => {
+  
+  const res = await fetch(getGetV1UserUrl(params),
+  {      
     ...options,
-    method: "GET",
-  })
+    method: 'GET'
+    
+    
+  }
+)
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
-  const data: getV1UserResponse["data"] = body ? JSON.parse(body) : {}
+  const data: getV1UserResponse['data'] = body ? JSON.parse(body) : {}
 
   return { data, status: res.status, headers: res.headers } as getV1UserResponse
 }
+
+
+
