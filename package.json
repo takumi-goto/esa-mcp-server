@@ -21,6 +21,7 @@
     "dev:tsc": "tsc --watch",
     "dev:openapi": "orval -w",
     "dev:docs": "redocly preview-docs",
+    "inspect": "pnpm dlx @modelcontextprotocol/inspector",
     "lint": "redocly lint",
     "typecheck": "tsc -p . --noEmit",
     "build": "pnpm build:orval && pnpm build:esbuild",
@@ -36,6 +37,7 @@
     "zod-to-json-schema": "^3.24.5"
   },
   "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.8.2",
     "@redocly/cli": "^1.34.2",
     "@types/node": "^22.14.0",
     "esbuild": "^0.25.2",
