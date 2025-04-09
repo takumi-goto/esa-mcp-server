@@ -10,6 +10,9 @@ import { z } from "zod"
 import {
   getV1TeamsTeamNamePosts,
   getV1TeamsTeamNamePostsPostNumber,
+  postV1TeamsTeamNamePosts,
+  patchV1TeamsTeamNamePostsPostNumber,
+  deleteV1TeamsTeamNamePostsPostNumber,
 } from "./generated/esa-api/esaAPI"
 import { zodToJsonSchema } from "zod-to-json-schema"
 import { version } from "../package.json"
@@ -66,6 +69,32 @@ const readEsaMultiplePostsSchema = z.object({
   postNumbers: z.array(z.number()),
 })
 
+const createEsaPostSchema = z.object({
+  teamName: z.string().default(env.DEFAULT_ESA_TEAM),
+  name: z.string(),
+  body_md: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  category: z.string().optional(),
+  wip: z.boolean().default(true),
+  message: z.string().optional(),
+})
+
+const updateEsaPostSchema = z.object({
+  teamName: z.string().default(env.DEFAULT_ESA_TEAM),
+  postNumber: z.number(),
+  name: z.string().optional(),
+  body_md: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  category: z.string().optional(),
+  wip: z.boolean().optional(),
+  message: z.string().optional(),
+})
+
+const deleteEsaPostSchema = z.object({
+  teamName: z.string().default(env.DEFAULT_ESA_TEAM),
+  postNumber: z.number(),
+})
+
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -111,6 +140,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         name: "read_esa_multiple_posts",
         description: "Read multiple posts in esa.io.",
         inputSchema: zodToJsonSchema(readEsaMultiplePostsSchema),
+      },
+      {
+        name: "create_esa_post",
+        description: "Create a new post in esa.io. Required parameters: name. Optional parameters: body_md, tags, category, wip (default: true), message.",
+        inputSchema: zodToJsonSchema(createEsaPostSchema),
+      },
+      {
+        name: "update_esa_post",
+        description: "Update an existing post in esa.io. Required parameters: postNumber. Optional parameters: name, body_md, tags, category, wip, message.",
+        inputSchema: zodToJsonSchema(updateEsaPostSchema),
+      },
+      {
+        name: "delete_esa_post",
+        description: "Delete a post in esa.io. Required parameters: postNumber.",
+        inputSchema: zodToJsonSchema(deleteEsaPostSchema),
       },
     ],
   }
@@ -233,6 +277,76 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return {
           content: [{ type: "text", text: JSON.stringify(multiplePosts) }],
         }
+
+      case "create_esa_post":
+        const parsedCreate = createEsaPostSchema.safeParse(args)
+        if (!parsedCreate.success) {
+          throw new Error(
+            `Invalid arguments for create_esa_post: ${parsedCreate.error}`
+          )
+        }
+
+        const { teamName: createTeamName, ...postData } = parsedCreate.data
+        const createResponse = await postV1TeamsTeamNamePosts(
+          createTeamName,
+          { post: postData },
+          {
+            headers: {
+              Authorization: `Bearer ${env.ESA_API_KEY}`,
+            },
+          }
+        )
+
+        return {
+          content: [{ type: "text", text: JSON.stringify(createResponse.data) }],
+        }
+
+      case "update_esa_post":
+        const parsedUpdate = updateEsaPostSchema.safeParse(args)
+        if (!parsedUpdate.success) {
+          throw new Error(
+            `Invalid arguments for update_esa_post: ${parsedUpdate.error}`
+          )
+        }
+
+        const { teamName: updateTeamName, postNumber, ...updateData } = parsedUpdate.data
+        const updateResponse = await patchV1TeamsTeamNamePostsPostNumber(
+          updateTeamName,
+          postNumber,
+          { post: updateData },
+          {
+            headers: {
+              Authorization: `Bearer ${env.ESA_API_KEY}`,
+            },
+          }
+        )
+
+        return {
+          content: [{ type: "text", text: JSON.stringify(updateResponse.data) }],
+        }
+
+      case "delete_esa_post":
+        const parsedDelete = deleteEsaPostSchema.safeParse(args)
+        if (!parsedDelete.success) {
+          throw new Error(
+            `Invalid arguments for delete_esa_post: ${parsedDelete.error}`
+          )
+        }
+
+        await deleteV1TeamsTeamNamePostsPostNumber(
+          parsedDelete.data.teamName,
+          parsedDelete.data.postNumber,
+          {
+            headers: {
+              Authorization: `Bearer ${env.ESA_API_KEY}`,
+            },
+          }
+        )
+
+        return {
+          content: [{ type: "text", text: JSON.stringify({ success: true }) }],
+        }
+        
       default:
         throw new Error(`Unknown tool: ${name}`)
     }
