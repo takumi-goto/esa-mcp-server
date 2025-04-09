@@ -12,6 +12,7 @@ import { version } from "../package.json"
 import { getRequiredEnv } from "./env"
 import { orderSchema, sortSchema } from "./schema"
 import { fetchPosts } from "./api"
+import { stringify } from "yaml"
 
 export const createServer = () => {
   const server = new McpServer({
@@ -71,7 +72,7 @@ export const createServer = () => {
         content: [
           {
             type: "text",
-            text: JSON.stringify({
+            text: stringify({
               posts: posts,
               nextPage: input.page + 1,
             }),
@@ -102,7 +103,7 @@ export const createServer = () => {
       const { body_html, ...others } = response.data
 
       return {
-        content: [{ type: "text", text: JSON.stringify(others) }],
+        content: [{ type: "text", text: stringify(others) }],
       }
     }
   )
@@ -134,7 +135,7 @@ export const createServer = () => {
       )
 
       return {
-        content: [{ type: "text", text: JSON.stringify(multiplePosts) }],
+        content: [{ type: "text", text: stringify(multiplePosts) }],
       }
     }
   )
@@ -164,7 +165,7 @@ export const createServer = () => {
       )
 
       return {
-        content: [{ type: "text", text: JSON.stringify(createResponse.data) }],
+        content: [{ type: "text", text: stringify(createResponse.data) }],
       }
     }
   )
@@ -196,7 +197,7 @@ export const createServer = () => {
       )
 
       return {
-        content: [{ type: "text", text: JSON.stringify(updateResponse.data) }],
+        content: [{ type: "text", text: stringify(updateResponse.data) }],
       }
     }
   )
@@ -220,7 +221,7 @@ export const createServer = () => {
       )
 
       return {
-        content: [{ type: "text", text: JSON.stringify({ success: true }) }],
+        content: [{ type: "text", text: stringify({ success: true }) }],
       }
     }
   )
