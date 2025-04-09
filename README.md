@@ -23,11 +23,11 @@ esa-mcp-server は、[esa.io](https://esa.io) の API を [Model Context Protoco
       "args": [
         "-y",
         "esa-mcp-server@latest"
-      ]
-    },
-    "env": {
-      "ESA_API_KEY": "your api key here",
-      "DEFAULT_ESA_TEAM": "your default esa team"
+      ],
+      "env": {
+        "ESA_API_KEY": "your api key here",
+        "DEFAULT_ESA_TEAM": "your default esa team"
+      }
     }
   }
 }
