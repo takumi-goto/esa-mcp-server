@@ -22,12 +22,16 @@
     "dev:openapi": "orval -w",
     "dev:docs": "redocly preview-docs",
     "inspect": "pnpm dlx @modelcontextprotocol/inspector",
-    "lint": "redocly lint",
+    "lint": "run-s lint:*",
+    "lint:redocly": "redocly lint",
+    "lint:prettier": "pnpm run:prettier . --check",
+    "fix": "pnpm run:prettier . --write",
     "typecheck": "tsc -p . --noEmit",
     "build": "pnpm build:orval && pnpm build:esbuild",
     "build:esbuild": "esbuild ./src/index.ts --format=esm --platform=node --bundle --outdir=dist",
     "build:orval": "orval",
-    "test": "vitest run"
+    "test": "vitest run",
+    "run:prettier": "prettier --ignore-unknown --no-error-on-unmatched-pattern --cache"
   },
   "dependencies": {
     "@faker-js/faker": "^9.6.0",
@@ -42,7 +46,9 @@
     "@types/node": "^22.14.0",
     "esbuild": "^0.25.2",
     "msw": "^2.7.3",
+    "npm-run-all2": "^7.0.2",
     "orval": "^7.8.0",
+    "prettier": "^3.5.3",
     "release-it": "^18.1.2",
     "release-it-pnpm": "^4.6.4",
     "typescript": "^5.8.3",
