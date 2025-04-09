@@ -1,4 +1,5 @@
 # esa-mcp-server
+
 [![smithery badge](https://smithery.ai/badge/@d-kimuson/esa-mcp-server)](https://smithery.ai/server/@d-kimuson/esa-mcp-server)
 
 esa-mcp-server は、[esa.io](https://esa.io) の API を [Model Context Protocol (MCP)](https://github.com/microsoft/model-context-protocol) を介して利用できるようにするサーバーです。
@@ -20,10 +21,7 @@ esa-mcp-server は、[esa.io](https://esa.io) の API を [Model Context Protoco
   "mcpServers": {
     "esa-mcp-server": {
       "command": "npx",
-      "args": [
-        "-y",
-        "esa-mcp-server@latest"
-      ],
+      "args": ["-y", "esa-mcp-server@latest"],
       "env": {
         "ESA_API_KEY": "your api key here",
         "DEFAULT_ESA_TEAM": "your default esa team"
@@ -41,12 +39,12 @@ esa.io の記事を検索します。
 
 ```typescript
 type SearchPostsParams = {
-  teamName?: string;
-  query: string;
-  order?: "asc" | "desc";
-  sort?: "created" | "updated" | "number" | "stars" | "comments" | "best_match";
-  page?: number;
-  perPage?: number;
+  teamName?: string
+  query: string
+  order?: "asc" | "desc"
+  sort?: "created" | "updated" | "number" | "stars" | "comments" | "best_match"
+  page?: number
+  perPage?: number
 }
 ```
 
@@ -62,8 +60,8 @@ esa の記事検索 API は、記事の本文も返しますが MCP Server の�
 
 ```typescript
 type ReadPostParams = {
-  teamName?: string;
-  postNumber: number;
+  teamName?: string
+  postNumber: number
 }
 ```
 
@@ -73,8 +71,8 @@ type ReadPostParams = {
 
 ```typescript
 type ReadMultiplePostsParams = {
-  teamName?: string;
-  postNumbers: number[];
+  teamName?: string
+  postNumbers: number[]
 }
 ```
 
