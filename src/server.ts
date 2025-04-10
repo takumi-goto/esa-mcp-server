@@ -11,14 +11,17 @@ import {
 import { version } from "../package.json"
 import { getRequiredEnv } from "./env"
 import { orderSchema, sortSchema } from "./schema"
-import { fetchPosts } from "./api"
+import { ApiClient } from "./api"
 import { stringify } from "yaml"
+import { formatTool } from "./formatTool"
 
 export const createServer = () => {
   const server = new McpServer({
     name: "esa-server",
     version: version,
   })
+
+  const client = new ApiClient(getRequiredEnv("ESA_API_KEY"))
 
   server.tool(
     "search_esa_posts",
@@ -58,28 +61,29 @@ export const createServer = () => {
       page: z.number().min(1).default(1),
       perPage: z.number().min(1).max(100).default(50),
     },
-    async (input) => {
-      const posts = await fetchPosts(
-        input.teamName,
-        input.query,
-        input.order,
-        input.sort,
-        input.page,
-        input.perPage
-      )
+    async (input) =>
+      await formatTool(async () => {
+        const posts = await client.searchPosts(
+          input.teamName,
+          input.query,
+          input.order,
+          input.sort,
+          input.page,
+          input.perPage
+        )
 
-      return {
-        content: [
-          {
-            type: "text",
-            text: stringify({
-              posts: posts,
-              nextPage: input.page + 1,
-            }),
-          },
-        ],
-      }
-    }
+        return {
+          content: [
+            {
+              type: "text",
+              text: stringify({
+                posts: posts,
+                nextPage: input.page + 1,
+              }),
+            },
+          ],
+        }
+      })
   )
 
   server.tool(
@@ -89,23 +93,18 @@ export const createServer = () => {
       teamName: z.string().default(getRequiredEnv("DEFAULT_ESA_TEAM")),
       postNumber: z.number(),
     },
-    async (input) => {
-      const response = await getV1TeamsTeamNamePostsPostNumber(
-        getRequiredEnv("DEFAULT_ESA_TEAM"),
-        input.postNumber,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${getRequiredEnv("ESA_API_KEY")}`,
-          },
-        }
-      )
-      const { body_html, ...others } = response.data
+    async (input) =>
+      await formatTool(async () => {
+        const [response] = await client.readPosts(input.teamName, [
+          input.postNumber,
+        ])
 
-      return {
-        content: [{ type: "text", text: stringify(others) }],
-      }
-    }
+        if (response === undefined) {
+          throw new Error("post not found")
+        }
+
+        return response
+      })
   )
 
   server.tool(
@@ -115,29 +114,10 @@ export const createServer = () => {
       teamName: z.string().default(getRequiredEnv("DEFAULT_ESA_TEAM")),
       postNumbers: z.array(z.number()),
     },
-    async (input) => {
-      const multiplePosts = await Promise.all(
-        input.postNumbers.map(async (postNumber) => {
-          const response = await getV1TeamsTeamNamePostsPostNumber(
-            getRequiredEnv("DEFAULT_ESA_TEAM"),
-            postNumber,
-            {},
-            {
-              headers: {
-                Authorization: `Bearer ${getRequiredEnv("ESA_API_KEY")}`,
-              },
-            }
-          )
-          const { body_html, ...others } = response.data
-
-          return others
-        })
+    async (input) =>
+      await formatTool(
+        async () => await client.readPosts(input.teamName, input.postNumbers)
       )
-
-      return {
-        content: [{ type: "text", text: stringify(multiplePosts) }],
-      }
-    }
   )
 
   server.tool(
@@ -152,22 +132,24 @@ export const createServer = () => {
       wip: z.boolean().default(true),
       message: z.string().optional(),
     },
-    async (input) => {
-      const { teamName: createTeamName, ...postData } = input
-      const createResponse = await postV1TeamsTeamNamePosts(
-        createTeamName,
-        { post: postData },
-        {
-          headers: {
-            Authorization: `Bearer ${getRequiredEnv("ESA_API_KEY")}`,
-          },
-        }
-      )
-
-      return {
-        content: [{ type: "text", text: stringify(createResponse.data) }],
-      }
-    }
+    async (input) =>
+      await formatTool(async () => {
+        const { teamName: createTeamName, ...postData } = input
+        return client.createPost(createTeamName, postData).then((data) => ({
+          success: true,
+          number: data.number,
+          full_name: data.full_name,
+          url: data.url,
+          wip: data.wip,
+          created_at: data.created_at,
+          message: data.message,
+          kind: data.kind,
+          tags: data.tags,
+          category: data.category,
+          revision_number: data.revision_number,
+          created_by: data.created_by,
+        }))
+      })
   )
 
   server.tool(
@@ -183,23 +165,28 @@ export const createServer = () => {
       wip: z.boolean().optional(),
       message: z.string().optional(),
     },
-    async (input) => {
-      const { teamName: updateTeamName, postNumber, ...updateData } = input
-      const updateResponse = await patchV1TeamsTeamNamePostsPostNumber(
-        updateTeamName,
-        postNumber,
-        { post: updateData },
-        {
-          headers: {
-            Authorization: `Bearer ${getRequiredEnv("ESA_API_KEY")}`,
-          },
-        }
-      )
-
-      return {
-        content: [{ type: "text", text: stringify(updateResponse.data) }],
-      }
-    }
+    async (input) =>
+      await formatTool(async () => {
+        const { teamName, postNumber, ...updateData } = input
+        return client
+          .updatePost(teamName, postNumber, updateData)
+          .then((data) => ({
+            success: true,
+            number: data.number,
+            full_name: data.full_name,
+            url: data.url,
+            wip: data.wip,
+            created_at: data.created_at,
+            updated_at: data.updated_at,
+            message: data.message,
+            kind: data.kind,
+            tags: data.tags,
+            category: data.category,
+            revision_number: data.revision_number,
+            created_by: data.created_by,
+            updated_by: data.updated_by,
+          }))
+      })
   )
 
   server.tool(
@@ -209,21 +196,10 @@ export const createServer = () => {
       teamName: z.string().default(getRequiredEnv("DEFAULT_ESA_TEAM")),
       postNumber: z.number(),
     },
-    async (input) => {
-      await deleteV1TeamsTeamNamePostsPostNumber(
-        input.teamName,
-        input.postNumber,
-        {
-          headers: {
-            Authorization: `Bearer ${getRequiredEnv("ESA_API_KEY")}`,
-          },
-        }
+    async (input) =>
+      await formatTool(async () =>
+        client.deletePost(input.teamName, input.postNumber)
       )
-
-      return {
-        content: [{ type: "text", text: stringify({ success: true }) }],
-      }
-    }
   )
 
   return {

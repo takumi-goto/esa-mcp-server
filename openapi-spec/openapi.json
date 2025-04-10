@@ -260,11 +260,11 @@
       },
       "ErrorResponseBody": {
         "type": "object",
+        "description": "Error response body. メッセージ・エラーがないケースもある",
         "properties": {
           "message": { "type": "string" },
           "error": { "type": "string" }
-        },
-        "required": ["message", "error"]
+        }
       }
     }
   }

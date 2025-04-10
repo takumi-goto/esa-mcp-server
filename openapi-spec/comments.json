@@ -38,27 +38,92 @@
           },
           "400": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "401": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "404": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "405": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "409": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "429": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           }
         }
@@ -109,27 +174,92 @@
           },
           "400": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "401": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "404": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "405": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "409": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "429": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           }
         }
@@ -173,27 +303,92 @@
           },
           "400": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "401": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "404": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "405": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "409": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "429": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           }
         }
@@ -234,27 +429,92 @@
           },
           "400": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "401": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "404": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "405": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "409": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "429": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           }
         }
@@ -267,27 +527,92 @@
           "204": { "description": "Comment deleted" },
           "400": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "401": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "404": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "405": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "409": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "429": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           }
         }
@@ -325,27 +650,92 @@
           },
           "400": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "401": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "404": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "405": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "409": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           },
           "429": {
             "content": {
-              "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./openapi.json#/components/schemas/ErrorResponseBody"
+                }
+              }
             }
           }
         }

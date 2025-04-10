@@ -109,9 +109,12 @@ export interface User {
   icon?: string;
 }
 
+/**
+ * Error response body. メッセージ・エラーがないケースもある
+ */
 export interface ErrorResponseBody {
-  message: string;
-  error: string;
+  message?: string;
+  error?: string;
 }
 
 /**

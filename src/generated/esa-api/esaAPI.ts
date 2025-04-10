@@ -7,6 +7,7 @@
  */
 import type {
   Comment,
+  ErrorResponseBody,
   GetOauthTokenInfo200,
   GetV1Teams200,
   GetV1TeamsParams,
@@ -58,8 +59,13 @@ export type postOauthTokenResponse200 = {
   data: PostOauthToken200
   status: 200
 }
+
+export type postOauthTokenResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postOauthTokenResponseComposite = postOauthTokenResponse200;
+export type postOauthTokenResponseComposite = postOauthTokenResponse200 | postOauthTokenResponse400;
     
 export type postOauthTokenResponse = postOauthTokenResponseComposite & {
   headers: Headers;
@@ -100,8 +106,13 @@ export type getOauthTokenInfoResponse200 = {
   data: GetOauthTokenInfo200
   status: 200
 }
+
+export type getOauthTokenInfoResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getOauthTokenInfoResponseComposite = getOauthTokenInfoResponse200;
+export type getOauthTokenInfoResponseComposite = getOauthTokenInfoResponse200 | getOauthTokenInfoResponse400;
     
 export type getOauthTokenInfoResponse = getOauthTokenInfoResponseComposite & {
   headers: Headers;
@@ -141,8 +152,13 @@ export type postOauthRevokeResponse200 = {
   data: PostOauthRevoke200
   status: 200
 }
+
+export type postOauthRevokeResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postOauthRevokeResponseComposite = postOauthRevokeResponse200;
+export type postOauthRevokeResponseComposite = postOauthRevokeResponse200 | postOauthRevokeResponse400;
     
 export type postOauthRevokeResponse = postOauthRevokeResponseComposite & {
   headers: Headers;
@@ -183,8 +199,13 @@ export type getV1TeamsResponse200 = {
   data: GetV1Teams200
   status: 200
 }
+
+export type getV1TeamsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsResponseComposite = getV1TeamsResponse200;
+export type getV1TeamsResponseComposite = getV1TeamsResponse200 | getV1TeamsResponse400;
     
 export type getV1TeamsResponse = getV1TeamsResponseComposite & {
   headers: Headers;
@@ -231,8 +252,13 @@ export type getV1TeamsTeamNameResponse200 = {
   data: Team
   status: 200
 }
+
+export type getV1TeamsTeamNameResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameResponseComposite = getV1TeamsTeamNameResponse200;
+export type getV1TeamsTeamNameResponseComposite = getV1TeamsTeamNameResponse200 | getV1TeamsTeamNameResponse400;
     
 export type getV1TeamsTeamNameResponse = getV1TeamsTeamNameResponseComposite & {
   headers: Headers;
@@ -272,8 +298,13 @@ export type getV1TeamsTeamNameStatsResponse200 = {
   data: GetV1TeamsTeamNameStats200
   status: 200
 }
+
+export type getV1TeamsTeamNameStatsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameStatsResponseComposite = getV1TeamsTeamNameStatsResponse200;
+export type getV1TeamsTeamNameStatsResponseComposite = getV1TeamsTeamNameStatsResponse200 | getV1TeamsTeamNameStatsResponse400;
     
 export type getV1TeamsTeamNameStatsResponse = getV1TeamsTeamNameStatsResponseComposite & {
   headers: Headers;
@@ -313,8 +344,13 @@ export type getV1TeamsTeamNamePostsResponse200 = {
   data: GetV1TeamsTeamNamePosts200
   status: 200
 }
+
+export type getV1TeamsTeamNamePostsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNamePostsResponseComposite = getV1TeamsTeamNamePostsResponse200;
+export type getV1TeamsTeamNamePostsResponseComposite = getV1TeamsTeamNamePostsResponse200 | getV1TeamsTeamNamePostsResponse400;
     
 export type getV1TeamsTeamNamePostsResponse = getV1TeamsTeamNamePostsResponseComposite & {
   headers: Headers;
@@ -363,8 +399,13 @@ export type postV1TeamsTeamNamePostsResponse201 = {
   data: Post
   status: 201
 }
+
+export type postV1TeamsTeamNamePostsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNamePostsResponseComposite = postV1TeamsTeamNamePostsResponse201;
+export type postV1TeamsTeamNamePostsResponseComposite = postV1TeamsTeamNamePostsResponse201 | postV1TeamsTeamNamePostsResponse400;
     
 export type postV1TeamsTeamNamePostsResponse = postV1TeamsTeamNamePostsResponseComposite & {
   headers: Headers;
@@ -406,8 +447,13 @@ export type getV1TeamsTeamNamePostsPostNumberResponse200 = {
   data: Post
   status: 200
 }
+
+export type getV1TeamsTeamNamePostsPostNumberResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNamePostsPostNumberResponseComposite = getV1TeamsTeamNamePostsPostNumberResponse200;
+export type getV1TeamsTeamNamePostsPostNumberResponseComposite = getV1TeamsTeamNamePostsPostNumberResponse200 | getV1TeamsTeamNamePostsPostNumberResponse400;
     
 export type getV1TeamsTeamNamePostsPostNumberResponse = getV1TeamsTeamNamePostsPostNumberResponseComposite & {
   headers: Headers;
@@ -458,8 +504,13 @@ export type patchV1TeamsTeamNamePostsPostNumberResponse200 = {
   data: PatchV1TeamsTeamNamePostsPostNumber200
   status: 200
 }
+
+export type patchV1TeamsTeamNamePostsPostNumberResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type patchV1TeamsTeamNamePostsPostNumberResponseComposite = patchV1TeamsTeamNamePostsPostNumberResponse200;
+export type patchV1TeamsTeamNamePostsPostNumberResponseComposite = patchV1TeamsTeamNamePostsPostNumberResponse200 | patchV1TeamsTeamNamePostsPostNumberResponse400;
     
 export type patchV1TeamsTeamNamePostsPostNumberResponse = patchV1TeamsTeamNamePostsPostNumberResponseComposite & {
   headers: Headers;
@@ -503,8 +554,13 @@ export type deleteV1TeamsTeamNamePostsPostNumberResponse204 = {
   data: void
   status: 204
 }
+
+export type deleteV1TeamsTeamNamePostsPostNumberResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type deleteV1TeamsTeamNamePostsPostNumberResponseComposite = deleteV1TeamsTeamNamePostsPostNumberResponse204;
+export type deleteV1TeamsTeamNamePostsPostNumberResponseComposite = deleteV1TeamsTeamNamePostsPostNumberResponse204 | deleteV1TeamsTeamNamePostsPostNumberResponse400;
     
 export type deleteV1TeamsTeamNamePostsPostNumberResponse = deleteV1TeamsTeamNamePostsPostNumberResponseComposite & {
   headers: Headers;
@@ -546,8 +602,13 @@ export type getV1TeamsTeamNamePostsPostNumberCommentsResponse200 = {
   data: GetV1TeamsTeamNamePostsPostNumberComments200
   status: 200
 }
+
+export type getV1TeamsTeamNamePostsPostNumberCommentsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNamePostsPostNumberCommentsResponseComposite = getV1TeamsTeamNamePostsPostNumberCommentsResponse200;
+export type getV1TeamsTeamNamePostsPostNumberCommentsResponseComposite = getV1TeamsTeamNamePostsPostNumberCommentsResponse200 | getV1TeamsTeamNamePostsPostNumberCommentsResponse400;
     
 export type getV1TeamsTeamNamePostsPostNumberCommentsResponse = getV1TeamsTeamNamePostsPostNumberCommentsResponseComposite & {
   headers: Headers;
@@ -589,8 +650,13 @@ export type postV1TeamsTeamNamePostsPostNumberCommentsResponse201 = {
   data: Comment
   status: 201
 }
+
+export type postV1TeamsTeamNamePostsPostNumberCommentsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNamePostsPostNumberCommentsResponseComposite = postV1TeamsTeamNamePostsPostNumberCommentsResponse201;
+export type postV1TeamsTeamNamePostsPostNumberCommentsResponseComposite = postV1TeamsTeamNamePostsPostNumberCommentsResponse201 | postV1TeamsTeamNamePostsPostNumberCommentsResponse400;
     
 export type postV1TeamsTeamNamePostsPostNumberCommentsResponse = postV1TeamsTeamNamePostsPostNumberCommentsResponseComposite & {
   headers: Headers;
@@ -634,8 +700,13 @@ export type getV1TeamsTeamNameCommentsCommentIdResponse200 = {
   data: Comment
   status: 200
 }
+
+export type getV1TeamsTeamNameCommentsCommentIdResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameCommentsCommentIdResponseComposite = getV1TeamsTeamNameCommentsCommentIdResponse200;
+export type getV1TeamsTeamNameCommentsCommentIdResponseComposite = getV1TeamsTeamNameCommentsCommentIdResponse200 | getV1TeamsTeamNameCommentsCommentIdResponse400;
     
 export type getV1TeamsTeamNameCommentsCommentIdResponse = getV1TeamsTeamNameCommentsCommentIdResponseComposite & {
   headers: Headers;
@@ -686,8 +757,13 @@ export type patchV1TeamsTeamNameCommentsCommentIdResponse200 = {
   data: Comment
   status: 200
 }
+
+export type patchV1TeamsTeamNameCommentsCommentIdResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type patchV1TeamsTeamNameCommentsCommentIdResponseComposite = patchV1TeamsTeamNameCommentsCommentIdResponse200;
+export type patchV1TeamsTeamNameCommentsCommentIdResponseComposite = patchV1TeamsTeamNameCommentsCommentIdResponse200 | patchV1TeamsTeamNameCommentsCommentIdResponse400;
     
 export type patchV1TeamsTeamNameCommentsCommentIdResponse = patchV1TeamsTeamNameCommentsCommentIdResponseComposite & {
   headers: Headers;
@@ -731,8 +807,13 @@ export type deleteV1TeamsTeamNameCommentsCommentIdResponse204 = {
   data: void
   status: 204
 }
+
+export type deleteV1TeamsTeamNameCommentsCommentIdResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type deleteV1TeamsTeamNameCommentsCommentIdResponseComposite = deleteV1TeamsTeamNameCommentsCommentIdResponse204;
+export type deleteV1TeamsTeamNameCommentsCommentIdResponseComposite = deleteV1TeamsTeamNameCommentsCommentIdResponse204 | deleteV1TeamsTeamNameCommentsCommentIdResponse400;
     
 export type deleteV1TeamsTeamNameCommentsCommentIdResponse = deleteV1TeamsTeamNameCommentsCommentIdResponseComposite & {
   headers: Headers;
@@ -774,8 +855,13 @@ export type getV1TeamsTeamNameCommentsResponse200 = {
   data: GetV1TeamsTeamNameComments200
   status: 200
 }
+
+export type getV1TeamsTeamNameCommentsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameCommentsResponseComposite = getV1TeamsTeamNameCommentsResponse200;
+export type getV1TeamsTeamNameCommentsResponseComposite = getV1TeamsTeamNameCommentsResponse200 | getV1TeamsTeamNameCommentsResponse400;
     
 export type getV1TeamsTeamNameCommentsResponse = getV1TeamsTeamNameCommentsResponseComposite & {
   headers: Headers;
@@ -815,8 +901,13 @@ export type getV1TeamsTeamNamePostsPostNumberStargazersResponse200 = {
   data: GetV1TeamsTeamNamePostsPostNumberStargazers200
   status: 200
 }
+
+export type getV1TeamsTeamNamePostsPostNumberStargazersResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNamePostsPostNumberStargazersResponseComposite = getV1TeamsTeamNamePostsPostNumberStargazersResponse200;
+export type getV1TeamsTeamNamePostsPostNumberStargazersResponseComposite = getV1TeamsTeamNamePostsPostNumberStargazersResponse200 | getV1TeamsTeamNamePostsPostNumberStargazersResponse400;
     
 export type getV1TeamsTeamNamePostsPostNumberStargazersResponse = getV1TeamsTeamNamePostsPostNumberStargazersResponseComposite & {
   headers: Headers;
@@ -858,8 +949,13 @@ export type postV1TeamsTeamNamePostsPostNumberStarResponse204 = {
   data: void
   status: 204
 }
+
+export type postV1TeamsTeamNamePostsPostNumberStarResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNamePostsPostNumberStarResponseComposite = postV1TeamsTeamNamePostsPostNumberStarResponse204;
+export type postV1TeamsTeamNamePostsPostNumberStarResponseComposite = postV1TeamsTeamNamePostsPostNumberStarResponse204 | postV1TeamsTeamNamePostsPostNumberStarResponse400;
     
 export type postV1TeamsTeamNamePostsPostNumberStarResponse = postV1TeamsTeamNamePostsPostNumberStarResponseComposite & {
   headers: Headers;
@@ -903,8 +999,13 @@ export type deleteV1TeamsTeamNamePostsPostNumberStarResponse204 = {
   data: void
   status: 204
 }
+
+export type deleteV1TeamsTeamNamePostsPostNumberStarResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type deleteV1TeamsTeamNamePostsPostNumberStarResponseComposite = deleteV1TeamsTeamNamePostsPostNumberStarResponse204;
+export type deleteV1TeamsTeamNamePostsPostNumberStarResponseComposite = deleteV1TeamsTeamNamePostsPostNumberStarResponse204 | deleteV1TeamsTeamNamePostsPostNumberStarResponse400;
     
 export type deleteV1TeamsTeamNamePostsPostNumberStarResponse = deleteV1TeamsTeamNamePostsPostNumberStarResponseComposite & {
   headers: Headers;
@@ -946,8 +1047,13 @@ export type getV1TeamsTeamNameCommentsCommentIdStargazersResponse200 = {
   data: GetV1TeamsTeamNameCommentsCommentIdStargazers200
   status: 200
 }
+
+export type getV1TeamsTeamNameCommentsCommentIdStargazersResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameCommentsCommentIdStargazersResponseComposite = getV1TeamsTeamNameCommentsCommentIdStargazersResponse200;
+export type getV1TeamsTeamNameCommentsCommentIdStargazersResponseComposite = getV1TeamsTeamNameCommentsCommentIdStargazersResponse200 | getV1TeamsTeamNameCommentsCommentIdStargazersResponse400;
     
 export type getV1TeamsTeamNameCommentsCommentIdStargazersResponse = getV1TeamsTeamNameCommentsCommentIdStargazersResponseComposite & {
   headers: Headers;
@@ -989,8 +1095,13 @@ export type postV1TeamsTeamNameCommentsCommentIdStarResponse204 = {
   data: void
   status: 204
 }
+
+export type postV1TeamsTeamNameCommentsCommentIdStarResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNameCommentsCommentIdStarResponseComposite = postV1TeamsTeamNameCommentsCommentIdStarResponse204;
+export type postV1TeamsTeamNameCommentsCommentIdStarResponseComposite = postV1TeamsTeamNameCommentsCommentIdStarResponse204 | postV1TeamsTeamNameCommentsCommentIdStarResponse400;
     
 export type postV1TeamsTeamNameCommentsCommentIdStarResponse = postV1TeamsTeamNameCommentsCommentIdStarResponseComposite & {
   headers: Headers;
@@ -1034,8 +1145,13 @@ export type deleteV1TeamsTeamNameCommentsCommentIdStarResponse204 = {
   data: void
   status: 204
 }
+
+export type deleteV1TeamsTeamNameCommentsCommentIdStarResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type deleteV1TeamsTeamNameCommentsCommentIdStarResponseComposite = deleteV1TeamsTeamNameCommentsCommentIdStarResponse204;
+export type deleteV1TeamsTeamNameCommentsCommentIdStarResponseComposite = deleteV1TeamsTeamNameCommentsCommentIdStarResponse204 | deleteV1TeamsTeamNameCommentsCommentIdStarResponse400;
     
 export type deleteV1TeamsTeamNameCommentsCommentIdStarResponse = deleteV1TeamsTeamNameCommentsCommentIdStarResponseComposite & {
   headers: Headers;
@@ -1077,8 +1193,13 @@ export type getV1TeamsTeamNamePostsPostNumberWatchersResponse200 = {
   data: GetV1TeamsTeamNamePostsPostNumberWatchers200
   status: 200
 }
+
+export type getV1TeamsTeamNamePostsPostNumberWatchersResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNamePostsPostNumberWatchersResponseComposite = getV1TeamsTeamNamePostsPostNumberWatchersResponse200;
+export type getV1TeamsTeamNamePostsPostNumberWatchersResponseComposite = getV1TeamsTeamNamePostsPostNumberWatchersResponse200 | getV1TeamsTeamNamePostsPostNumberWatchersResponse400;
     
 export type getV1TeamsTeamNamePostsPostNumberWatchersResponse = getV1TeamsTeamNamePostsPostNumberWatchersResponseComposite & {
   headers: Headers;
@@ -1120,8 +1241,13 @@ export type postV1TeamsTeamNamePostsPostNumberWatchResponse204 = {
   data: void
   status: 204
 }
+
+export type postV1TeamsTeamNamePostsPostNumberWatchResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNamePostsPostNumberWatchResponseComposite = postV1TeamsTeamNamePostsPostNumberWatchResponse204;
+export type postV1TeamsTeamNamePostsPostNumberWatchResponseComposite = postV1TeamsTeamNamePostsPostNumberWatchResponse204 | postV1TeamsTeamNamePostsPostNumberWatchResponse400;
     
 export type postV1TeamsTeamNamePostsPostNumberWatchResponse = postV1TeamsTeamNamePostsPostNumberWatchResponseComposite & {
   headers: Headers;
@@ -1163,8 +1289,13 @@ export type deleteV1TeamsTeamNamePostsPostNumberWatchResponse204 = {
   data: void
   status: 204
 }
+
+export type deleteV1TeamsTeamNamePostsPostNumberWatchResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type deleteV1TeamsTeamNamePostsPostNumberWatchResponseComposite = deleteV1TeamsTeamNamePostsPostNumberWatchResponse204;
+export type deleteV1TeamsTeamNamePostsPostNumberWatchResponseComposite = deleteV1TeamsTeamNamePostsPostNumberWatchResponse204 | deleteV1TeamsTeamNamePostsPostNumberWatchResponse400;
     
 export type deleteV1TeamsTeamNamePostsPostNumberWatchResponse = deleteV1TeamsTeamNamePostsPostNumberWatchResponseComposite & {
   headers: Headers;
@@ -1206,8 +1337,13 @@ export type postV1TeamsTeamNameCategoriesBatchMoveResponse200 = {
   data: PostV1TeamsTeamNameCategoriesBatchMove200
   status: 200
 }
+
+export type postV1TeamsTeamNameCategoriesBatchMoveResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNameCategoriesBatchMoveResponseComposite = postV1TeamsTeamNameCategoriesBatchMoveResponse200;
+export type postV1TeamsTeamNameCategoriesBatchMoveResponseComposite = postV1TeamsTeamNameCategoriesBatchMoveResponse200 | postV1TeamsTeamNameCategoriesBatchMoveResponse400;
     
 export type postV1TeamsTeamNameCategoriesBatchMoveResponse = postV1TeamsTeamNameCategoriesBatchMoveResponseComposite & {
   headers: Headers;
@@ -1249,8 +1385,13 @@ export type getV1TeamsTeamNameTagsResponse200 = {
   data: GetV1TeamsTeamNameTags200
   status: 200
 }
+
+export type getV1TeamsTeamNameTagsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameTagsResponseComposite = getV1TeamsTeamNameTagsResponse200;
+export type getV1TeamsTeamNameTagsResponseComposite = getV1TeamsTeamNameTagsResponse200 | getV1TeamsTeamNameTagsResponse400;
     
 export type getV1TeamsTeamNameTagsResponse = getV1TeamsTeamNameTagsResponseComposite & {
   headers: Headers;
@@ -1290,8 +1431,13 @@ export type getV1TeamsTeamNameInvitationResponse200 = {
   data: GetV1TeamsTeamNameInvitation200
   status: 200
 }
+
+export type getV1TeamsTeamNameInvitationResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameInvitationResponseComposite = getV1TeamsTeamNameInvitationResponse200;
+export type getV1TeamsTeamNameInvitationResponseComposite = getV1TeamsTeamNameInvitationResponse200 | getV1TeamsTeamNameInvitationResponse400;
     
 export type getV1TeamsTeamNameInvitationResponse = getV1TeamsTeamNameInvitationResponseComposite & {
   headers: Headers;
@@ -1331,8 +1477,13 @@ export type postV1TeamsTeamNameInvitationRegeneratorResponse200 = {
   data: PostV1TeamsTeamNameInvitationRegenerator200
   status: 200
 }
+
+export type postV1TeamsTeamNameInvitationRegeneratorResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNameInvitationRegeneratorResponseComposite = postV1TeamsTeamNameInvitationRegeneratorResponse200;
+export type postV1TeamsTeamNameInvitationRegeneratorResponseComposite = postV1TeamsTeamNameInvitationRegeneratorResponse200 | postV1TeamsTeamNameInvitationRegeneratorResponse400;
     
 export type postV1TeamsTeamNameInvitationRegeneratorResponse = postV1TeamsTeamNameInvitationRegeneratorResponseComposite & {
   headers: Headers;
@@ -1372,8 +1523,13 @@ export type getV1TeamsTeamNameInvitationsResponse200 = {
   data: GetV1TeamsTeamNameInvitations200
   status: 200
 }
+
+export type getV1TeamsTeamNameInvitationsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameInvitationsResponseComposite = getV1TeamsTeamNameInvitationsResponse200;
+export type getV1TeamsTeamNameInvitationsResponseComposite = getV1TeamsTeamNameInvitationsResponse200 | getV1TeamsTeamNameInvitationsResponse400;
     
 export type getV1TeamsTeamNameInvitationsResponse = getV1TeamsTeamNameInvitationsResponseComposite & {
   headers: Headers;
@@ -1413,8 +1569,13 @@ export type postV1TeamsTeamNameInvitationsResponse201 = {
   data: PostV1TeamsTeamNameInvitations201
   status: 201
 }
+
+export type postV1TeamsTeamNameInvitationsResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNameInvitationsResponseComposite = postV1TeamsTeamNameInvitationsResponse201;
+export type postV1TeamsTeamNameInvitationsResponseComposite = postV1TeamsTeamNameInvitationsResponse201 | postV1TeamsTeamNameInvitationsResponse400;
     
 export type postV1TeamsTeamNameInvitationsResponse = postV1TeamsTeamNameInvitationsResponseComposite & {
   headers: Headers;
@@ -1456,8 +1617,13 @@ export type deleteV1TeamsTeamNameInvitationsCodeResponse204 = {
   data: void
   status: 204
 }
+
+export type deleteV1TeamsTeamNameInvitationsCodeResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type deleteV1TeamsTeamNameInvitationsCodeResponseComposite = deleteV1TeamsTeamNameInvitationsCodeResponse204;
+export type deleteV1TeamsTeamNameInvitationsCodeResponseComposite = deleteV1TeamsTeamNameInvitationsCodeResponse204 | deleteV1TeamsTeamNameInvitationsCodeResponse400;
     
 export type deleteV1TeamsTeamNameInvitationsCodeResponse = deleteV1TeamsTeamNameInvitationsCodeResponseComposite & {
   headers: Headers;
@@ -1499,8 +1665,13 @@ export type getV1TeamsTeamNameEmojisResponse200 = {
   data: GetV1TeamsTeamNameEmojis200
   status: 200
 }
+
+export type getV1TeamsTeamNameEmojisResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1TeamsTeamNameEmojisResponseComposite = getV1TeamsTeamNameEmojisResponse200;
+export type getV1TeamsTeamNameEmojisResponseComposite = getV1TeamsTeamNameEmojisResponse200 | getV1TeamsTeamNameEmojisResponse400;
     
 export type getV1TeamsTeamNameEmojisResponse = getV1TeamsTeamNameEmojisResponseComposite & {
   headers: Headers;
@@ -1549,8 +1720,13 @@ export type postV1TeamsTeamNameEmojisResponse201 = {
   data: PostV1TeamsTeamNameEmojis201
   status: 201
 }
+
+export type postV1TeamsTeamNameEmojisResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type postV1TeamsTeamNameEmojisResponseComposite = postV1TeamsTeamNameEmojisResponse201;
+export type postV1TeamsTeamNameEmojisResponseComposite = postV1TeamsTeamNameEmojisResponse201 | postV1TeamsTeamNameEmojisResponse400;
     
 export type postV1TeamsTeamNameEmojisResponse = postV1TeamsTeamNameEmojisResponseComposite & {
   headers: Headers;
@@ -1592,8 +1768,13 @@ export type deleteV1TeamsTeamNameEmojisCodeResponse204 = {
   data: void
   status: 204
 }
+
+export type deleteV1TeamsTeamNameEmojisCodeResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type deleteV1TeamsTeamNameEmojisCodeResponseComposite = deleteV1TeamsTeamNameEmojisCodeResponse204;
+export type deleteV1TeamsTeamNameEmojisCodeResponseComposite = deleteV1TeamsTeamNameEmojisCodeResponse204 | deleteV1TeamsTeamNameEmojisCodeResponse400;
     
 export type deleteV1TeamsTeamNameEmojisCodeResponse = deleteV1TeamsTeamNameEmojisCodeResponseComposite & {
   headers: Headers;
@@ -1635,8 +1816,13 @@ export type getV1UserResponse200 = {
   data: GetV1User200
   status: 200
 }
+
+export type getV1UserResponse400 = {
+  data: ErrorResponseBody
+  status: 400
+}
     
-export type getV1UserResponseComposite = getV1UserResponse200;
+export type getV1UserResponseComposite = getV1UserResponse200 | getV1UserResponse400;
     
 export type getV1UserResponse = getV1UserResponseComposite & {
   headers: Headers;
