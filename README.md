@@ -8,9 +8,12 @@ esa-mcp-server は、[esa.io](https://esa.io) の API を [Model Context Protoco
 
 ## 機能
 
-- esa.io の記事検索
-- 記事の詳細取得（単一・複数）
-- MCP 準拠のインターフェース提供
+- get_search_query_document: esa.io の記事を検索するためのドキュメンテーションの提供
+- search_esa_posts: esa.io の記事検索
+- read_esa_post, read_esa_multiple_posts: 記事の詳細取得（単一・複数）
+- create_esa_post: 記事の作成
+- update_esa_post: 記事の更新
+- delete_esa_post: 記事の削除
 
 ## Usage
 
@@ -31,50 +34,21 @@ esa-mcp-server は、[esa.io](https://esa.io) の API を [Model Context Protoco
 }
 ```
 
+## プロンプト例
+
+```markdown
+## Using esa tools
+
+esa の情報を検索するために esa 以下のツールを利用できます。
+
+- 記事の検索には search_esa_posts ツールを利用します。複雑なクエリを利用する場合は get_search_query_document ツールで正確なクエリの記述方法を理解してから利用します。
+- 記事本文を取得するには read_esa_post, read_esa_multiple_posts ツールを利用します。複数の記事を取得する必要がある場合は read_esa_multiple_posts でまとめて取得することを推奨します。
+- 記事を作成/更新/削除するにはそれぞれ create_esa_post, update_esa_post, delete_esa_post ツールを利用します。
+```
+
 ## 利用可能なツール
 
-### search_esa_posts
-
-esa.io の記事を検索します。
-
-```typescript
-type SearchPostsParams = {
-  teamName?: string
-  query: string
-  order?: "asc" | "desc"
-  sort?: "created" | "updated" | "number" | "stars" | "comments" | "best_match"
-  page?: number
-  perPage?: number
-}
-```
-
-esa の記事検索 API は、記事の本文も返しますが MCP Server のレスポンスには含めないようにしています。
-
-これは検索の時点でヒットした全記事の本文を返すとトークン数を激しく消費してしまうためです。
-
-各パラメータの用途は [esa API v1 の公式ドキュメント](https://docs.esa.io/posts/102) を参照してください。
-
-### read_esa_post
-
-指定した投稿番号の記事を取得します。
-
-```typescript
-type ReadPostParams = {
-  teamName?: string
-  postNumber: number
-}
-```
-
-### read_esa_multiple_posts
-
-複数の投稿番号の記事を一括で取得します。
-
-```typescript
-type ReadMultiplePostsParams = {
-  teamName?: string
-  postNumbers: number[]
-}
-```
+[src/server.ts](./src/server.ts) を確認してください。
 
 ## Contribution
 
