@@ -13,7 +13,6 @@ esa-mcp-server は、[esa.io](https://esa.io) の API を [Model Context Protoco
 - read_esa_post, read_esa_multiple_posts: 記事の詳細取得（単一・複数）
 - create_esa_post: 記事の作成
 - update_esa_post: 記事の更新
-- delete_esa_post: 記事の削除
 
 ## Usage
 
@@ -43,7 +42,7 @@ esa の情報を検索するために esa 以下のツールを利用できま�
 
 - 記事の検索には search_esa_posts ツールを利用します。複雑なクエリを利用する場合は get_search_query_document ツールで正確なクエリの記述方法を理解してから利用します。
 - 記事本文を取得するには read_esa_post, read_esa_multiple_posts ツールを利用します。複数の記事を取得する必要がある場合は read_esa_multiple_posts でまとめて取得することを推奨します。
-- 記事を作成/更新/削除するにはそれぞれ create_esa_post, update_esa_post, delete_esa_post ツールを利用します。
+- 記事を作成/更新/削除するにはそれぞれ create_esa_post, update_esa_post ツールを利用します。
 ```
 
 ## 利用可能なツール

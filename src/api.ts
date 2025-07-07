@@ -2,7 +2,6 @@ import { object, z } from "zod"
 import { orderSchema, sortSchema } from "./schema"
 import { Post } from "./generated/esa-api/esaAPI.schemas"
 import {
-  deleteV1TeamsTeamNamePostsPostNumber,
   getV1TeamsTeamNamePosts,
   getV1TeamsTeamNamePostsPostNumber,
   patchV1TeamsTeamNamePostsPostNumber,
@@ -140,16 +139,6 @@ export class ApiClient {
           },
         }
       )
-    ).then((response) => response.data)
-  }
-
-  async deletePost(teamName: string, postNumber: number) {
-    return this.callApi(() =>
-      deleteV1TeamsTeamNamePostsPostNumber(teamName, postNumber, {
-        headers: {
-          Authorization: `Bearer ${this.apiKey}`,
-        },
-      })
     ).then((response) => response.data)
   }
 }

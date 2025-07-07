@@ -28,7 +28,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 1. `get_search_query_document` - 検索クエリのドキュメントを返す
 2. `search_esa_posts` - ページネーションとフィルタリングでesa記事を検索
 3. `read_esa_post` / `read_esa_multiple_posts` - 記事コンテンツを取得
-4. `create_esa_post` / `update_esa_post` / `delete_esa_post` - CRUD操作
+4. `create_esa_post` / `update_esa_post` / - CRUD操作
 
 ### コード生成ワークフロー
 

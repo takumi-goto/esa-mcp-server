@@ -201,19 +201,6 @@ export const createServer = () => {
       })
   )
 
-  server.tool(
-    "delete_esa_post",
-    "Delete a post in esa.io. Required parameters: postNumber.",
-    {
-      teamName: z.string().default(getRequiredEnv("DEFAULT_ESA_TEAM")),
-      postNumber: z.number(),
-    },
-    async (input) =>
-      await formatTool(async () =>
-        client.deletePost(input.teamName, input.postNumber)
-      )
-  )
-
   return {
     server,
   }
