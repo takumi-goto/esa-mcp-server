@@ -1,5 +1,5 @@
 {
-  "name": "esa-mcp-server",
+  "name": "esa-mcp-server-goto",
   "description": "esa の Model Context Protocol サーバー実装",
   "version": "0.1.1",
   "type": "module",
@@ -61,7 +61,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/d-kimuson/esa-mcp-server"
+    "url": "https://github.com/takumi-goto/esa-mcp-server"
   },
-  "homepage": "https://github.com/d-kimuson/esa-mcp-server"
+  "homepage": "https://github.com/takumi-goto/esa-mcp-server"
 }
